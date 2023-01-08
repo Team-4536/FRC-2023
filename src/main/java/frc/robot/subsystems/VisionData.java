@@ -7,17 +7,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class VisionData {
 
-    NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
+    public NetworkTable limelight = NetworkTableInstance.getDefault().getTable("limelight");
 
-    NetworkTableEntry tv = limelight.getEntry("tv");    
-    NetworkTableEntry tx = limelight.getEntry("tx");
-    NetworkTableEntry ty = limelight.getEntry("ty");
-    NetworkTableEntry ta = limelight.getEntry("ta");
+    public NetworkTableEntry tv = limelight.getEntry("tv");    
+    public NetworkTableEntry tx = limelight.getEntry("tx");
+    public NetworkTableEntry ty = limelight.getEntry("ty");
+    public NetworkTableEntry ta = limelight.getEntry("ta");
 
-    boolean targetFound = (tv.getDouble(0.0) == 1);
-    double targetX = tx.getDouble(0.0);
-    double targetY = ty.getDouble(0.0);
-    double targetArea = ta.getDouble(0.0);
+    public boolean targetFound = (tv.getDouble(0.0) == 1);
+    public double targetX = tx.getDouble(0.0);
+    public double targetY = ty.getDouble(0.0);
+    public double targetArea = ta.getDouble(0.0);
 
     public void sendTelemetry(){
 

@@ -17,5 +17,6 @@ public final class InputData {
 
         telemetryUtil.warnOn(!controllerA.isConnected(), "Controller A is disconnected");
         telemetryUtil.warnOn(!controllerB.isConnected(), "Controller B is disconnected");
+        
     }
 }
