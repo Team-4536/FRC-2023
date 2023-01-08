@@ -6,4 +6,7 @@ CONTROLLER_B_PORT: 1
 
 
 
-TELEOP_PER_FUNC: frc.robot.behaviours.BasicMechTeleop.run
+ROBOT_PER_FUNC: frc.robot.behaviours.TestingBehaviour.botPeriodic
+TELEOP_PER_FUNC: frc.robot.behaviours.TestingBehaviour.teleopPeriodic
+DISABLED_INIT_FUNC: frc.robot.behaviours.TestingBehaviour.disabledInit
+DISABLED_PER_FUNC: frc.robot.behaviours.TestingBehaviour.disabledPeriodic
