@@ -6,6 +6,7 @@ package frc.robot;
 
 import java.lang.reflect.Field;
 import java.util.Scanner;
+
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -17,54 +18,36 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 
-/* TESTING CHECKLIST:
-    file open
-    file reading
-    prop get
-    correct split
-    props set without exceptions (final may be an issue)
-    use works properly
-    all types
-    all types of funky inputs
-
-    comments!
-
-
-    also you should make some documentation on this
-*/
 public final class Constants {
-
 
     // root config, please do not change from within another config
     public static final String MASTER_CONFIG_NAME = "robotConfig.cnf";
 
 
+
     //
-    // NOTE: please do not add sublasses to this because the config system cannot parse into those
+    // NOTE: please do not add sublasses to this because the config system cannot parse into those,
     // if you really want it ask rob :)
+    //
     // RN constants are prefixed with the subsys.
     //
 
 
-    public static final int DRIVE_FRONT_LEFT_PORT = 0;
-    public static final int DRIVE_FRONT_RIGHT_PORT = 0;
-    public static final int DRIVE_BACK_LEFT_PORT = 0;
-    public static final int DRIVE_BACK_RIGHT_PORT = 0;
+    public static int DRIVE_FRONT_LEFT_PORT = 0;
+    public static int DRIVE_FRONT_RIGHT_PORT = 0;
+    public static int DRIVE_BACK_LEFT_PORT = 0;
+    public static int DRIVE_BACK_RIGHT_PORT = 0;
 
-    public static final boolean DRIVE_FRONT_LEFT_FLIPPED = false;
-    public static final boolean DRIVE_FRONT_RIGHT_FLIPPED = false;
-    public static final boolean DRIVE_BACK_LEFT_FLIPPED = false;
-    public static final boolean DRIVE_BACK_RIGHT_FLIPPED = false;
-
-
+    public static boolean DRIVE_FRONT_LEFT_FLIPPED = false;
+    public static boolean DRIVE_FRONT_RIGHT_FLIPPED = false;
+    public static boolean DRIVE_BACK_LEFT_FLIPPED = false;
+    public static boolean DRIVE_BACK_RIGHT_FLIPPED = false;
 
 
-    public static final int CONTROLLER_A_PORT = 0;
-    public static final int CONTROLLER_B_PORT = 0;
+    public static int CONTROLLER_A_PORT = 0;
+    public static int CONTROLLER_B_PORT = 0;
 
 
-
-    
 
 
 
@@ -95,7 +78,8 @@ public final class Constants {
                     line = line.replaceAll("\t", "");
 
 
-                    if(line.indexOf("//") == 0){
+                    if(line.indexOf("//") == 0 || line.equals("")){
+                        lineNmb++;
                         continue; }
 
 
@@ -107,22 +91,26 @@ public final class Constants {
 
 
                     // recurse to other files
-                    if(split[0] == "use"){
-                        load(split[1]); }
+                    if(split[0].equals("use")){
+                        load(split[1]); 
+                        lineNmb++;
+                        continue;
+                    }
 
 
 
 
                     //fucking die from cringe
                     Field f = getClass().getDeclaredField(split[0]);
+                    f.setAccessible(true);
 
-                    if(f.getType().toGenericString() == "int"){
+                    if(f.getType().toGenericString().equals("int")){
                         f.setInt(null, Integer.valueOf(split[1]));
                     }
-                    else if (f.getType().toGenericString() == "boolean"){
+                    else if (f.getType().toGenericString().equals("boolean")){
                         f.setBoolean(null, Boolean.valueOf(split[1]));
                     }
-                    else if (f.getType().toGenericString() == "double"){
+                    else if (f.getType().toGenericString().equals("double")){
                         f.setDouble(null, Double.valueOf(split[1]));
                     }
                     else {
