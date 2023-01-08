@@ -4,3 +4,6 @@ use: motorSettings.cnf
 CONTROLLER_A_PORT: 0
 CONTROLLER_B_PORT: 1
 
+
+
+TELEOP_PER_FUNC: frc.robot.behaviours.BasicMechTeleop.run

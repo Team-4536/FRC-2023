@@ -6,9 +6,11 @@ package frc.robot;
 
 import java.lang.reflect.Field;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.functions.telemetryUtil;
 
 
 
@@ -49,6 +51,26 @@ public final class Constants {
 
 
 
+
+
+
+    private static final Consumer<Robot> NULL_FUNC = new Consumer<Robot>() {
+        @Override public void accept(Robot r) {
+            telemetryUtil.warnOn(true, "null function in behaviour");
+        }
+    };
+
+    public static Consumer<Robot> ROBOT_INIT_FUNC = NULL_FUNC;
+    public static Consumer<Robot> ROBOT_PER_FUNC = NULL_FUNC;
+
+    public static Consumer<Robot> TELEOP_INIT_FUNC = NULL_FUNC;
+    public static Consumer<Robot> TELEOP_PER_FUNC = NULL_FUNC;
+
+    public static Consumer<Robot> AUTO_INIT_FUNC = NULL_FUNC;
+    public static Consumer<Robot> AUTO_PER_FUNC = NULL_FUNC;
+
+    public static Consumer<Robot> DISABLED_INIT_FUNC = NULL_FUNC;
+    public static Consumer<Robot> DISABLED_PER_FUNC = NULL_FUNC;
 
 
 
@@ -113,6 +135,16 @@ public final class Constants {
                     else if (f.getType().toGenericString().equals("double")){
                         f.setDouble(null, Double.valueOf(split[1]));
                     }
+                    else if (f.getType().toGenericString().equals("public abstract interface java.util.function.Consumer<T>")) {
+
+						int idx = split[1].lastIndexOf(".");
+						String className = split[1].substring(0, idx);
+						String funcName = split[1].substring(idx+1);
+
+						Class<?> c = Class.forName(className);
+
+						f.set(null, c.getDeclaredField(funcName).get(null));
+					} 
                     else {
                         throw new Exception("Type " + f.getType().toGenericString() + " not implemented! (ask rob)");
                     }

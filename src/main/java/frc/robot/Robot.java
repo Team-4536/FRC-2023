@@ -5,7 +5,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import frc.robot.functions.driveUtil;
 import frc.robot.subsystems.DriveData;
 import frc.robot.subsystems.InputData;
 
@@ -19,8 +18,8 @@ public class Robot extends TimedRobot {
 
 
 
-    DriveData drive = new DriveData();
-    InputData input = new InputData();
+    public DriveData drive = new DriveData();
+    public InputData input = new InputData();
 
 
 
@@ -30,15 +29,12 @@ public class Robot extends TimedRobot {
 
     // runs once when the robot is turned on
     @Override
-    public void robotInit() { }
+    public void robotInit() { Constants.ROBOT_INIT_FUNC.accept(this); }
 
     // runs constantly, no matter the mode
     // don't put motor control stuff in here lol
     @Override
-    public void robotPeriodic() { 
-        drive.sendTelemetry();
-        input.sendTelemetry();
-    }
+    public void robotPeriodic() { Constants.ROBOT_INIT_FUNC.accept(this);  }
 
 
 
@@ -47,11 +43,11 @@ public class Robot extends TimedRobot {
 
     // runs once when autos start
     @Override
-    public void autonomousInit() { }
+    public void autonomousInit() { Constants.AUTO_INIT_FUNC.accept(this);  }
 
     // runs repeatedly during autos
     @Override
-    public void autonomousPeriodic() {}
+    public void autonomousPeriodic() { Constants.AUTO_PER_FUNC.accept(this); }
 
 
 
@@ -62,13 +58,11 @@ public class Robot extends TimedRobot {
 
     // runs once on teleop start
     @Override
-    public void teleopInit() { }
+    public void teleopInit() {  Constants.TELEOP_INIT_FUNC.accept(this); }
 
     // runs repeatedly during teleop
     @Override
-    public void teleopPeriodic() {
-        driveUtil.setPowerMechanum(drive, input.controllerA.getLeftX(), input.controllerA.getLeftY(), input.controllerA.getRightX());
-    }
+    public void teleopPeriodic() { Constants.TELEOP_PER_FUNC.accept(this);  }
 
 
 
@@ -79,16 +73,12 @@ public class Robot extends TimedRobot {
 
     // when you stop the robot, this gets called
     @Override
-    public void disabledInit() {
-        driveUtil.stop(drive);
-    }
+    public void disabledInit() { Constants.DISABLED_INIT_FUNC.accept(this);  }
 
     // while the robot is disabled, this is repeatedly running
     // no driving in here
     @Override
-    public void disabledPeriodic() {
-        driveUtil.stop(drive);
-    }
+    public void disabledPeriodic() { Constants.DISABLED_PER_FUNC.accept(this);  }
 
 
 
