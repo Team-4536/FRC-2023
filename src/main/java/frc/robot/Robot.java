@@ -34,7 +34,7 @@ public class Robot extends TimedRobot {
     // runs constantly, no matter the mode
     // don't put motor control stuff in here lol
     @Override
-    public void robotPeriodic() { Constants.ROBOT_INIT_FUNC.accept(this);  }
+    public void robotPeriodic() { Constants.ROBOT_PER_FUNC.accept(this);  }
 
 
 
