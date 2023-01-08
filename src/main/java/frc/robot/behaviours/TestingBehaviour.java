@@ -22,7 +22,6 @@ public class TestingBehaviour {
                 r.input.controllerA.getRightX());
         }
     };
-    
 
 
 

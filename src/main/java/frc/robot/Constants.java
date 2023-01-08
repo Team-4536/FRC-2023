@@ -83,6 +83,7 @@ public final class Constants {
 
     public void load() {
         load(Constants.MASTER_CONFIG_NAME);
+        SmartDashboard.putString("Config loaded", MASTER_CONFIG_NAME);
     }
 
     private void load(String fileName) {
@@ -144,6 +145,8 @@ public final class Constants {
 						Class<?> c = Class.forName(className);
 
 						f.set(null, c.getDeclaredField(funcName).get(null));
+
+                        SmartDashboard.putString(f.getName(), split[1]);
 					} 
                     else {
                         throw new Exception("Type " + f.getType().toGenericString() + " not implemented! (ask rob)");
