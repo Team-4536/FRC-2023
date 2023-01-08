@@ -7,8 +7,8 @@ import frc.robot.functions.telemetryUtil;
 
 public final class InputData {
 
-    public XboxController controllerA = new XboxController(Constants.Input.CONTROLLER_A_PORT);
-    public XboxController controllerB = new XboxController(Constants.Input.CONTROLLER_B_PORT);
+    public XboxController controllerA = new XboxController(Constants.CONTROLLER_A_PORT);
+    public XboxController controllerB = new XboxController(Constants.CONTROLLER_B_PORT);
 
 
 
