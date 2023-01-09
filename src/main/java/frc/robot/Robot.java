@@ -5,8 +5,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import frc.robot.functions.driveUtil;
 import frc.robot.subsystems.DriveData;
+import frc.robot.subsystems.GyroData;
 import frc.robot.subsystems.InputData;
 import frc.robot.subsystems.VisionData;
 
@@ -23,6 +25,7 @@ public class Robot extends TimedRobot {
     DriveData drive = new DriveData();
     InputData input = new InputData();
     VisionData vision = new VisionData();
+    GyroData gyro = new GyroData();
 
 
 
@@ -41,6 +44,8 @@ public class Robot extends TimedRobot {
         drive.sendTelemetry();
         input.sendTelemetry();
         vision.sendTelemetry();
+        gyro.sendTelemetry();
+
     }
 
 
