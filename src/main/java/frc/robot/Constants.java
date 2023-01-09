@@ -33,10 +33,10 @@ public final class Constants {
     //
 
 
-    public static int DRIVE_FRONT_LEFT_PORT = 0;
-    public static int DRIVE_FRONT_RIGHT_PORT = 0;
-    public static int DRIVE_BACK_LEFT_PORT = 0;
-    public static int DRIVE_BACK_RIGHT_PORT = 0;
+    public static int DRIVE_FRONT_LEFT_PORT = 1
+    public static int DRIVE_FRONT_RIGHT_PORT = 4;
+    public static int DRIVE_BACK_LEFT_PORT = 2;
+    public static int DRIVE_BACK_RIGHT_PORT = 3;
 
     public static boolean DRIVE_FRONT_LEFT_FLIPPED = false;
     public static boolean DRIVE_FRONT_RIGHT_FLIPPED = false;
@@ -46,21 +46,20 @@ public final class Constants {
 
     public static int CONTROLLER_A_PORT = 0;
     public static int CONTROLLER_B_PORT = 0;
-
-
-
-
-
-
-
-
-
+    
+    public static final double POWER_SCALE_UPPER_BOUND = 1.0;
+    public static final double POWER_SCALE_LOWER_BOUND = 0.2;
 
 
 
 
     public void load() {
         load(Constants.MASTER_CONFIG_NAME);
+
+        public static final double POWER_SCALE_UPPER_BOUND = 1.0;
+        public static final double POWER_SCALE_LOWER_BOUND = 0.2;
+
+
     }
 
     private void load(String fileName) {
@@ -81,7 +80,6 @@ public final class Constants {
                     if(line.indexOf("//") == 0 || line.equals("")){
                         lineNmb++;
                         continue; }
-
 
                     //buy insurance
                     String[] split = line.split("\\:");
@@ -136,6 +134,7 @@ public final class Constants {
         catch(Exception e) {
             SmartDashboard.putString("Error loading config", e.getMessage());
         }
+
 
     }
 
