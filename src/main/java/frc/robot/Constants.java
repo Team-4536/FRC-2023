@@ -11,8 +11,8 @@ public final class Constants {
 
     public final class Drive {
 
-        public static final int FRONT_LEFT_PORT = 0;
-        public static final int FRONT_RIGHT_PORT = 1;
+        public static final int FRONT_LEFT_PORT = 1;
+        public static final int FRONT_RIGHT_PORT = 4;
         public static final int BACK_LEFT_PORT = 2;
         public static final int BACK_RIGHT_PORT = 3;
 
