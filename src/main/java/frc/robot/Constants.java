@@ -4,12 +4,30 @@
 
 package frc.robot;
 
-/**
- * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
- * constants. This class should not be used for any other purpose. All constants should be declared
- * globally (i.e. public static). Do not put anything functional in this class.
- *
- * <p>It is advised to statically import this class (or one of its inner classes) wherever the
- * constants are needed, to reduce verbosity.
- */
-public final class Constants {}
+public final class Constants {
+
+
+
+
+    public final class Drive {
+
+        public static final int FRONT_LEFT_PORT = 0;
+        public static final int FRONT_RIGHT_PORT = 1;
+        public static final int BACK_LEFT_PORT = 2;
+        public static final int BACK_RIGHT_PORT = 3;
+
+        public static final boolean FRONT_LEFT_FLIPPED = false;
+        public static final boolean FRONT_RIGHT_FLIPPED = false;
+        public static final boolean BACK_LEFT_FLIPPED = false;
+        public static final boolean BACK_RIGHT_FLIPPED = false;
+
+    }
+
+
+
+
+    public final class Input {
+        public static final int CONTROLLER_A_PORT = 0;
+        public static final int CONTROLLER_B_PORT = 1;
+    }
+}
