@@ -33,10 +33,10 @@ public final class Constants {
     //
 
 
-    public static int DRIVE_FRONT_LEFT_PORT = 1;
-    public static int DRIVE_FRONT_RIGHT_PORT = 4;
-    public static int DRIVE_BACK_LEFT_PORT = 2;
-    public static int DRIVE_BACK_RIGHT_PORT = 3;
+    public static int DRIVE_FRONT_LEFT_PORT = 4;
+    public static int DRIVE_FRONT_RIGHT_PORT = 1;
+    public static int DRIVE_BACK_LEFT_PORT = 3;
+    public static int DRIVE_BACK_RIGHT_PORT = 2;
 
     public static boolean DRIVE_FRONT_LEFT_FLIPPED = false;
     public static boolean DRIVE_FRONT_RIGHT_FLIPPED = false;

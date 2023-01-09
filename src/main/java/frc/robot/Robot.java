@@ -75,7 +75,7 @@ public class Robot extends TimedRobot {
     // runs repeatedly during teleop
     @Override
     public void teleopPeriodic() {
-        driveUtil.setPowerMechanum(drive, input.joystick.getY(), input.joystick.getX(), input.joystick.getZ(), input.joystick.getRawAxis(4));
+        driveUtil.setPowerTank(drive, input.joystick.getY(), input.joystick.getZ(), input.joystick.getRawAxis(4));
     }
 
 

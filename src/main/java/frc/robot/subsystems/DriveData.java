@@ -2,16 +2,18 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 
 public class DriveData {
 
 
-    public final WPI_VictorSPX frontLeftDrive = new WPI_VictorSPX(Constants.DRIVE_FRONT_LEFT_PORT);
-    public final WPI_VictorSPX frontRightDrive = new WPI_VictorSPX(Constants.DRIVE_FRONT_RIGHT_PORT);
-    public final WPI_VictorSPX backLeftDrive = new WPI_VictorSPX(Constants.DRIVE_BACK_LEFT_PORT);
-    public final WPI_VictorSPX backRightDrive = new WPI_VictorSPX(Constants.DRIVE_BACK_RIGHT_PORT);
+    public final Spark frontLeftDrive = new Spark(Constants.DRIVE_FRONT_LEFT_PORT);
+    public final Spark frontRightDrive = new Spark(Constants.DRIVE_FRONT_RIGHT_PORT);
+    public final Spark backLeftDrive = new Spark(Constants.DRIVE_BACK_LEFT_PORT);
+    public final Spark backRightDrive = new Spark(Constants.DRIVE_BACK_RIGHT_PORT);
 
     public DriveData() {
         this.frontLeftDrive.setInverted(Constants.DRIVE_FRONT_LEFT_FLIPPED);
