@@ -1,15 +1,16 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 
 public class DriveData {
 
-    public final PWMSparkMax frontLeftDrive = new PWMSparkMax(Constants.DRIVE_FRONT_LEFT_PORT);
-    public final PWMSparkMax frontRightDrive = new PWMSparkMax(Constants.DRIVE_FRONT_RIGHT_PORT);
-    public final PWMSparkMax backLeftDrive = new PWMSparkMax(Constants.DRIVE_BACK_LEFT_PORT);
-    public final PWMSparkMax backRightDrive = new PWMSparkMax(Constants.DRIVE_BACK_RIGHT_PORT);
+    public final Spark frontLeftDrive = new Spark(Constants.DRIVE_FRONT_LEFT_PORT);
+    public final Spark frontRightDrive = new Spark(Constants.DRIVE_FRONT_RIGHT_PORT);
+    public final Spark backLeftDrive = new Spark(Constants.DRIVE_BACK_LEFT_PORT);
+    public final Spark backRightDrive = new Spark(Constants.DRIVE_BACK_RIGHT_PORT);
 
     public DriveData() {
         this.frontLeftDrive.setInverted(Constants.DRIVE_FRONT_LEFT_FLIPPED);

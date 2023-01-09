@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Scanner;
 import java.util.function.Consumer;
@@ -35,15 +36,15 @@ public final class Constants {
     //
 
 
-    public static int DRIVE_FRONT_LEFT_PORT = 0;
+    public static int DRIVE_FRONT_LEFT_PORT = 3;
     public static int DRIVE_FRONT_RIGHT_PORT = 0;
-    public static int DRIVE_BACK_LEFT_PORT = 0;
-    public static int DRIVE_BACK_RIGHT_PORT = 0;
+    public static int DRIVE_BACK_LEFT_PORT = 2;
+    public static int DRIVE_BACK_RIGHT_PORT = 1;
 
     public static boolean DRIVE_FRONT_LEFT_FLIPPED = false;
-    public static boolean DRIVE_FRONT_RIGHT_FLIPPED = false;
+    public static boolean DRIVE_FRONT_RIGHT_FLIPPED = true;
     public static boolean DRIVE_BACK_LEFT_FLIPPED = false;
-    public static boolean DRIVE_BACK_RIGHT_FLIPPED = false;
+    public static boolean DRIVE_BACK_RIGHT_FLIPPED = true;
 
 
     public static int CONTROLLER_A_PORT = 0;
@@ -88,11 +89,10 @@ public final class Constants {
 
     private void load(String fileName) {
 
-        try (Scanner s = new Scanner(Filesystem.getDeployDirectory().toString() + fileName)) {
+        try (Scanner s = new Scanner(new File(Filesystem.getDeployDirectory().toString() + "/" + fileName))) {
             int lineNmb = 0;
             String line = "";
             try{
-
                 while(s.hasNextLine()){
 
                     //clean the line
