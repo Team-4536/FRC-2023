@@ -34,8 +34,8 @@ public final class driveUtil {
         }
 
         //turn -1, 1 joystick into a scale based on upper and lower bound constants
-        double scaleBound = Constants.Drive.POWER_SCALE_UPPER_BOUND - Constants.Drive.POWER_SCALE_LOWER_BOUND;
-        scale = ((scale + 1.0) / (2/scaleBound)) + Constants.Drive.POWER_SCALE_LOWER_BOUND;
+        double scaleBound = Constants.POWER_SCALE_UPPER_BOUND - Constants.POWER_SCALE_LOWER_BOUND;
+        scale = ((scale + 1.0) / (2/scaleBound)) + Constants.POWER_SCALE_LOWER_BOUND;
 
 
         //scale all sppeds so that the fastest is now going at 1
