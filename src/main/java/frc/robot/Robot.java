@@ -5,9 +5,12 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import frc.robot.functions.driveUtil;
 import frc.robot.subsystems.DriveData;
+import frc.robot.subsystems.GyroData;
 import frc.robot.subsystems.InputData;
+import frc.robot.subsystems.VisionData;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,6 +24,8 @@ public class Robot extends TimedRobot {
 
     DriveData drive = new DriveData();
     InputData input = new InputData();
+    VisionData vision = new VisionData();
+    GyroData gyro = new GyroData();
 
 
 
@@ -38,6 +43,9 @@ public class Robot extends TimedRobot {
     public void robotPeriodic() { 
         drive.sendTelemetry();
         input.sendTelemetry();
+        vision.sendTelemetry();
+        gyro.sendTelemetry();
+
     }
 
 
