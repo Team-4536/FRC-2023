@@ -21,13 +21,18 @@ public final class Constants {
         public static final boolean BACK_LEFT_FLIPPED = false;
         public static final boolean BACK_RIGHT_FLIPPED = false;
 
+        public static final double POWER_SCALE_UPPER_BOUND = 1.0;
+        public static final double POWER_SCALE_LOWER_BOUND = 0.2;
+
     }
 
 
 
 
     public final class Input {
-        public static final int CONTROLLER_A_PORT = 0;
-        public static final int CONTROLLER_B_PORT = 1;
+
+        public static final int CONTROLLER_PORT = 0;
+        public static final int JOYSTICK_PORT = 1;
+
     }
 }

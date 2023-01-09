@@ -1,5 +1,6 @@
 package frc.robot.functions;
 
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveData;
 
 public final class driveUtil {
@@ -31,6 +32,10 @@ public final class driveUtil {
                 max = Math.abs(speeds[i]);
             }
         }
+
+        //turn -1, 1 joystick into a scale based on upper and lower bound constants
+        double scaleBound = Constants.Drive.POWER_SCALE_UPPER_BOUND - Constants.Drive.POWER_SCALE_LOWER_BOUND;
+        scale = ((scale + 1.0) / (2/scaleBound)) + Constants.Drive.POWER_SCALE_LOWER_BOUND;
 
 
         //scale all sppeds so that the fastest is now going at 1
