@@ -67,7 +67,7 @@ public class Robot extends TimedRobot {
     // runs repeatedly during teleop
     @Override
     public void teleopPeriodic() {
-        driveUtil.setPowerMechanum(drive, input.controllerA.getLeftX(), input.controllerA.getLeftY(), input.controllerA.getRightX());
+        driveUtil.setPowerMechanum(drive, input.controllerA.getLeftX(), input.controllerA.getLeftY(), input.controllerA.getRightX(), 1.0);
     }
 
 
