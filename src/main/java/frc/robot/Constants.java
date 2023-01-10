@@ -49,7 +49,7 @@ public final class Constants {
 
 
     public static int CONTROLLER_PORT = 0;
-    public static int JOYSTICK_PORT = 0;
+    public static int JOYSTICK_PORT = 1;
 
     public static final double POWER_SCALE_UPPER_BOUND = 1.0;
     public static final double POWER_SCALE_LOWER_BOUND = 0.2;

@@ -1,8 +1,8 @@
 
 use: motorSettings.cnf
 
-CONTROLLER_A_PORT: 0
-CONTROLLER_B_PORT: 1
+CONTROLLER_PORT: 0
+JOYSTICK_PORT: 1
 
 
 ROBOT_PER_FUNC: frc.robot.behaviours.TestingBehaviour.botPeriodic
