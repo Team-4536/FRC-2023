@@ -29,7 +29,11 @@ public class Robot extends TimedRobot {
 
     // runs once when the robot is turned on
     @Override
-    public void robotInit() { new Constants().load(); Constants.ROBOT_INIT_FUNC.accept(this); }
+    public void robotInit() {
+        new Constants().load();
+        Constants.ROBOT_INIT_FUNC.accept(this);
+        TelemetryUtil.clearDashboard();
+    }
 
     // runs constantly, no matter the mode
     // don't put motor control stuff in here lol
