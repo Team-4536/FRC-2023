@@ -5,8 +5,14 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+
+import edu.wpi.first.wpilibj.interfaces.Gyro;
+import frc.robot.functions.driveUtil;
+
 import frc.robot.subsystems.DriveData;
+import frc.robot.subsystems.GyroData;
 import frc.robot.subsystems.InputData;
+import frc.robot.subsystems.VisionData;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -18,10 +24,9 @@ public class Robot extends TimedRobot {
 
 
 
+
     public DriveData drive = new DriveData();
     public InputData input = new InputData();
-
-
 
 
 
@@ -35,8 +40,6 @@ public class Robot extends TimedRobot {
     // don't put motor control stuff in here lol
     @Override
     public void robotPeriodic() { Constants.ROBOT_PER_FUNC.accept(this);  }
-
-
 
 
 
@@ -63,8 +66,6 @@ public class Robot extends TimedRobot {
     // runs repeatedly during teleop
     @Override
     public void teleopPeriodic() { Constants.TELEOP_PER_FUNC.accept(this);  }
-
-
 
 
 
