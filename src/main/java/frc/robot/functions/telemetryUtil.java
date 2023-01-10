@@ -29,6 +29,7 @@ public class TelemetryUtil {
 
     public static ArrayList<String> sysLog = new ArrayList<String>();
     public static ArrayList<String> debugLog = new ArrayList<String>();
+    public static boolean clearInputFlag = false;
 
 
 
@@ -50,6 +51,9 @@ public class TelemetryUtil {
         for(String s : sysLog) {
             built += "\t - " + s + "\n"; }
         SmartDashboard.putString("** Systems Log", built);
+
+        if(!SmartDashboard.getKeys().contains("Log Input")) {
+            SmartDashboard.putString("Log Input", ""); }
     }
 
 
