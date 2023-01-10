@@ -9,7 +9,6 @@ import frc.robot.Constants;
 
 public class DriveData {
 
-
     public final Spark frontLeftDrive = new Spark(Constants.DRIVE_FRONT_LEFT_PORT);
     public final Spark frontRightDrive = new Spark(Constants.DRIVE_FRONT_RIGHT_PORT);
     public final Spark backLeftDrive = new Spark(Constants.DRIVE_BACK_LEFT_PORT);

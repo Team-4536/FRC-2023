@@ -4,11 +4,14 @@
 
 package frc.robot;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.functions.telemetryUtil;
 
 
 
@@ -34,22 +37,51 @@ public final class Constants {
 
 
 
-    public static int DRIVE_FRONT_LEFT_PORT = 4;
-    public static int DRIVE_FRONT_RIGHT_PORT = 1;
-    public static int DRIVE_BACK_LEFT_PORT = 3;
-    public static int DRIVE_BACK_RIGHT_PORT = 2;
+    public static int DRIVE_FRONT_LEFT_PORT = 3;
+    public static int DRIVE_FRONT_RIGHT_PORT = 0;
+    public static int DRIVE_BACK_LEFT_PORT = 2;
+    public static int DRIVE_BACK_RIGHT_PORT = 1;
 
     public static boolean DRIVE_FRONT_LEFT_FLIPPED = false;
-    public static boolean DRIVE_FRONT_RIGHT_FLIPPED = false;
+    public static boolean DRIVE_FRONT_RIGHT_FLIPPED = true;
     public static boolean DRIVE_BACK_LEFT_FLIPPED = false;
-    public static boolean DRIVE_BACK_RIGHT_FLIPPED = false;
+    public static boolean DRIVE_BACK_RIGHT_FLIPPED = true;
 
 
-    public static int CONTROLLER_PORT = 0;
-    public static int JOYSTICK_PORT = 1;
-    
+    public static int CONTROLLER_A_PORT = 0;
+    public static int CONTROLLER_B_PORT = 0;
+
     public static final double POWER_SCALE_UPPER_BOUND = 1.0;
     public static final double POWER_SCALE_LOWER_BOUND = 0.2;
+
+
+
+
+
+    private static final Consumer<Robot> NULL_FUNC = new Consumer<Robot>() {
+        @Override public void accept(Robot r) {
+            telemetryUtil.warnOn(true, "null function in behaviour");
+        }
+    };
+
+    public static Consumer<Robot> ROBOT_INIT_FUNC = NULL_FUNC;
+    public static Consumer<Robot> ROBOT_PER_FUNC = NULL_FUNC;
+
+    public static Consumer<Robot> TELEOP_INIT_FUNC = NULL_FUNC;
+    public static Consumer<Robot> TELEOP_PER_FUNC = NULL_FUNC;
+
+    public static Consumer<Robot> AUTO_INIT_FUNC = NULL_FUNC;
+    public static Consumer<Robot> AUTO_PER_FUNC = NULL_FUNC;
+
+    public static Consumer<Robot> DISABLED_INIT_FUNC = NULL_FUNC;
+    public static Consumer<Robot> DISABLED_PER_FUNC = NULL_FUNC;
+
+
+
+
+
+
+  
 
 
 
@@ -57,15 +89,15 @@ public final class Constants {
     public void load() {
         load(Constants.MASTER_CONFIG_NAME);
 
+        SmartDashboard.putString("Config loaded", MASTER_CONFIG_NAME);
     }
 
     private void load(String fileName) {
 
-        try (Scanner s = new Scanner(Filesystem.getDeployDirectory().toString() + fileName)) {
+        try (Scanner s = new Scanner(new File(Filesystem.getDeployDirectory().toString() + "/" + fileName))) {
             int lineNmb = 0;
             String line = "";
             try{
-
                 while(s.hasNextLine()){
 
                     //clean the line
@@ -108,6 +140,18 @@ public final class Constants {
                     else if (f.getType().toGenericString().equals("double")){
                         f.setDouble(null, Double.valueOf(split[1]));
                     }
+                    else if (f.getType().toGenericString().equals("public abstract interface java.util.function.Consumer<T>")) {
+
+						int idx = split[1].lastIndexOf(".");
+						String className = split[1].substring(0, idx);
+						String funcName = split[1].substring(idx+1);
+
+						Class<?> c = Class.forName(className);
+
+						f.set(null, c.getDeclaredField(funcName).get(null));
+
+                        SmartDashboard.putString(f.getName(), split[1]);
+					} 
                     else {
                         throw new Exception("Type " + f.getType().toGenericString() + " not implemented! (ask rob)");
                     }
