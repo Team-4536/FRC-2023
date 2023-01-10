@@ -10,8 +10,7 @@ import java.util.Scanner;
 import java.util.function.Consumer;
 
 import edu.wpi.first.wpilibj.Filesystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.functions.telemetryUtil;
+import frc.robot.functions.TelemetryUtil;
 
 
 
@@ -59,9 +58,7 @@ public final class Constants {
 
 
     private static final Consumer<Robot> NULL_FUNC = new Consumer<Robot>() {
-        @Override public void accept(Robot r) {
-            telemetryUtil.warnOn(true, "null function in behaviour");
-        }
+        @Override public void accept(Robot r) { }
     };
 
     public static Consumer<Robot> ROBOT_INIT_FUNC = NULL_FUNC;
@@ -88,8 +85,7 @@ public final class Constants {
 
     public void load() {
         load(Constants.MASTER_CONFIG_NAME);
-
-        SmartDashboard.putString("Config loaded", MASTER_CONFIG_NAME);
+        TelemetryUtil.sysLog.add("Config loaded " +  MASTER_CONFIG_NAME);
     }
 
     private void load(String fileName) {
@@ -150,11 +146,12 @@ public final class Constants {
 
 						f.set(null, c.getDeclaredField(funcName).get(null));
 
-                        SmartDashboard.putString(f.getName(), split[1]);
 					} 
                     else {
                         throw new Exception("Type " + f.getType().toGenericString() + " not implemented! (ask rob)");
                     }
+
+                    TelemetryUtil.debugLog(f.getName() + " set to " + split[1]);
 
                     lineNmb++;
                 }
@@ -167,15 +164,24 @@ public final class Constants {
 
 
             } catch(Exception e) {
-                SmartDashboard.putString("Error parsing config file", e.getMessage() + "\n Line number: " + lineNmb + ", Line: " + line); 
+                TelemetryUtil.logError("CONFIG PARSE ERR: " + e.getMessage() + "\n Line number: " + lineNmb + ", Line: " + line); 
             };
 
             s.close();
         }
         catch(Exception e) {
-            SmartDashboard.putString("Error loading config", e.getMessage());
+            TelemetryUtil.logError("CONFIG FILE OPEN ERR: " + e.getMessage());
         }
 
+
+
+
+
+        if(Constants.DISABLED_INIT_FUNC == NULL_FUNC) {
+            TelemetryUtil.logWarning("Disabled init function is not set"); }
+
+        if(Constants.DISABLED_PER_FUNC == NULL_FUNC) {
+            TelemetryUtil.logWarning("Disabled preriodic function is not set"); }
 
     }
 

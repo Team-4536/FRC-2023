@@ -5,20 +5,24 @@ import java.util.Set;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class telemetryUtil {
+public class TelemetryUtil {
 
 
     public static void warnOn(boolean condition, String title) {
         if(condition){
-            sysLog.add("[WARNING] " + title);
+            logWarning(title);
         }
+    }
+
+    public static void logWarning(String title) {
+        sysLog.add("[WARNING] " + title);
     }
 
     public static void logError(String msg) {
         sysLog.add("[ERROR] " + msg);
     }
 
-    public static void log(String msg) {
+    public static void debugLog(String msg) {
         debugLog.add(msg);
     }
 
