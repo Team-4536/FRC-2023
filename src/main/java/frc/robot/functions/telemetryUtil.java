@@ -3,7 +3,6 @@ package frc.robot.functions;
 import java.util.ArrayList;
 import java.util.Set;
 
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TelemetryUtil {

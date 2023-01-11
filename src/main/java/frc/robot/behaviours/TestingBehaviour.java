@@ -2,10 +2,8 @@ package frc.robot.behaviours;
 
 import java.util.function.Consumer;
 
-import edu.wpi.first.cscore.CameraServerJNI.TelemetryKind;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
-import frc.robot.functions.TelemetryUtil;
 import frc.robot.functions.driveUtil;
 
 public class TestingBehaviour {
@@ -21,6 +19,8 @@ public class TestingBehaviour {
         @Override public void accept(Robot r) {
 
             driveUtil.setPowerTank(r.drive, r.input.controller.getLeftY(), r.input.controller.getLeftX(), r.input.controller.getRightTriggerAxis());
+            String in = SmartDashboard.getString("Log Input", "");
+            SmartDashboard.putString("Input return", in);
         }
     };
 
