@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.functions.TelemetryUtil;
 import frc.robot.subsystems.DriveData;
 import frc.robot.subsystems.InputData;
@@ -20,8 +21,8 @@ public class Robot extends TimedRobot {
 
 
 
-    public DriveData drive = new DriveData();
-    public InputData input = new InputData();
+    public DriveData drive;
+    public InputData input;
 
 
 
@@ -31,6 +32,10 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         new Constants().load();
+
+        this.drive = new DriveData();
+        this.input = new InputData();
+
         Constants.ROBOT_INIT_FUNC.accept(this);
         TelemetryUtil.clearDashboard();
     }

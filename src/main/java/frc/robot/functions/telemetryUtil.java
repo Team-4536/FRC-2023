@@ -3,6 +3,7 @@ package frc.robot.functions;
 import java.util.ArrayList;
 import java.util.Set;
 
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TelemetryUtil {
@@ -40,17 +41,14 @@ public class TelemetryUtil {
 
     public static void updateDashboard() {
 
-        String built;
 
-        built = "";
         for(String s : debugLog) {
-            built += "\t - " + s + "\n"; }
-        SmartDashboard.putString("** Debug Log", built);
+            SmartDashboard.putString(s, ""); }
+        //SmartDashboard.putString("** Debug Log", built);
 
-        built = "";
         for(String s : sysLog) {
-            built += "\t - " + s + "\n"; }
-        SmartDashboard.putString("** Systems Log", built);
+            SmartDashboard.putString(s, ""); }
+        //SmartDashboard.putString("** Systems Log", built);
 
         if(!SmartDashboard.getKeys().contains("Log Input")) {
             SmartDashboard.putString("Log Input", ""); }

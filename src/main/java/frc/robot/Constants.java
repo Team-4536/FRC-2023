@@ -151,7 +151,7 @@ public final class Constants {
                         throw new Exception("Type " + f.getType().toGenericString() + " not implemented! (ask rob)");
                     }
 
-                    TelemetryUtil.debugLog(f.getName() + " set to " + split[1]);
+                    // TelemetryUtil.debugLog(f.getName() + " set to " + split[1]);
 
                     lineNmb++;
                 }

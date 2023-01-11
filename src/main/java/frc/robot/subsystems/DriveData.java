@@ -6,12 +6,17 @@ import frc.robot.Constants;
 
 public class DriveData {
 
-    public final Spark frontLeftDrive = new Spark(Constants.DRIVE_FRONT_LEFT_PORT);
-    public final Spark frontRightDrive = new Spark(Constants.DRIVE_FRONT_RIGHT_PORT);
-    public final Spark backLeftDrive = new Spark(Constants.DRIVE_BACK_LEFT_PORT);
-    public final Spark backRightDrive = new Spark(Constants.DRIVE_BACK_RIGHT_PORT);
+    public Spark frontLeftDrive;
+    public Spark frontRightDrive;
+    public Spark backLeftDrive;
+    public Spark backRightDrive;
 
     public DriveData() {
+        this.frontLeftDrive = new Spark(Constants.DRIVE_FRONT_LEFT_PORT);
+        this.frontRightDrive = new Spark(Constants.DRIVE_FRONT_RIGHT_PORT);
+        this.backLeftDrive = new Spark(Constants.DRIVE_BACK_LEFT_PORT);
+        this.backRightDrive = new Spark(Constants.DRIVE_BACK_RIGHT_PORT);
+
         this.frontLeftDrive.setInverted(Constants.DRIVE_FRONT_LEFT_FLIPPED);
         this.frontRightDrive.setInverted(Constants.DRIVE_FRONT_RIGHT_FLIPPED);
         this.backLeftDrive.setInverted(Constants.DRIVE_BACK_LEFT_FLIPPED);

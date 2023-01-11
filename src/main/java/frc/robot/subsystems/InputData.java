@@ -9,11 +9,15 @@ import frc.robot.functions.TelemetryUtil;
 
 public final class InputData {
 
-    public XboxController controller = new XboxController(Constants.CONTROLLER_PORT);
-    public Joystick joystick = new Joystick(Constants.JOYSTICK_PORT);
+    public XboxController controller;
+    public Joystick joystick;
 
 
 
+    public InputData() {
+        controller = new XboxController(Constants.CONTROLLER_PORT);
+        joystick = new Joystick(Constants.JOYSTICK_PORT);
+    }
 
 
     public void sendTelemetry() {
