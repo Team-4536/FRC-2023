@@ -1,6 +1,6 @@
 package frc.robot;
 
-import frc.robot.functions.TelemetryUtil;
+import frc.robot.functions.telemetryUtil;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -61,7 +61,7 @@ public class Configured {
 
     public void load() {
         load(Constants.MASTER_CONFIG_NAME);
-        TelemetryUtil.sysLog.add("Config loaded " +  Constants.MASTER_CONFIG_NAME);
+        telemetryUtil.sysLog.add("Config loaded " +  Constants.MASTER_CONFIG_NAME);
     }
 
     private void load(String fileName) {
@@ -140,13 +140,13 @@ public class Configured {
 
 
             } catch(Exception e) {
-                TelemetryUtil.logError("CONFIG PARSE ERR: " + e.getMessage() + "\n Line number: " + lineNmb + ", Line: " + line); 
+                telemetryUtil.logError("CONFIG PARSE ERR: " + e.getMessage() + "\n Line number: " + lineNmb + ", Line: " + line); 
             };
 
             s.close();
         }
         catch(Exception e) {
-            TelemetryUtil.logError("CONFIG FILE OPEN ERR: " + e.getMessage());
+            telemetryUtil.logError("CONFIG FILE OPEN ERR: " + e.getMessage());
         }
 
 
@@ -154,10 +154,10 @@ public class Configured {
 
 
         if(Configured.DISABLED_INIT_FUNC == NULL_FUNC) {
-            TelemetryUtil.logWarning("Disabled init function is not set"); }
+            telemetryUtil.logWarning("Disabled init function is not set"); }
 
         if(Configured.DISABLED_PER_FUNC == NULL_FUNC) {
-            TelemetryUtil.logWarning("Disabled preriodic function is not set"); }
+            telemetryUtil.logWarning("Disabled preriodic function is not set"); }
 
     }
 }
