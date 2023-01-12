@@ -30,30 +30,30 @@ public class Robot extends TimedRobot {
     // runs once when the robot is turned on
     @Override
     public void robotInit() {
-        new Constants().load();
+        new Configured().load();
 
         this.drive = new DriveData();
         this.input = new InputData();
 
-        Constants.ROBOT_INIT_FUNC.accept(this);
+        Configured.ROBOT_INIT_FUNC.accept(this);
         TelemetryUtil.clearDashboard();
     }
 
     // runs constantly, no matter the mode
     // don't put motor control stuff in here lol
     @Override
-    public void robotPeriodic() { Constants.ROBOT_PER_FUNC.accept(this); TelemetryUtil.updateDashboard(); }
+    public void robotPeriodic() { Configured.ROBOT_PER_FUNC.accept(this); TelemetryUtil.updateDashboard(); }
 
 
 
 
     // runs once when autos start
     @Override
-    public void autonomousInit() { Constants.AUTO_INIT_FUNC.accept(this);  }
+    public void autonomousInit() { Configured.AUTO_INIT_FUNC.accept(this);  }
 
     // runs repeatedly during autos
     @Override
-    public void autonomousPeriodic() { Constants.AUTO_PER_FUNC.accept(this); }
+    public void autonomousPeriodic() { Configured.AUTO_PER_FUNC.accept(this); }
 
 
 
@@ -64,11 +64,11 @@ public class Robot extends TimedRobot {
 
     // runs once on teleop start
     @Override
-    public void teleopInit() {  Constants.TELEOP_INIT_FUNC.accept(this); }
+    public void teleopInit() {  Configured.TELEOP_INIT_FUNC.accept(this); }
 
     // runs repeatedly during teleop
     @Override
-    public void teleopPeriodic() { Constants.TELEOP_PER_FUNC.accept(this);  }
+    public void teleopPeriodic() { Configured.TELEOP_PER_FUNC.accept(this);  }
 
 
 
@@ -77,12 +77,12 @@ public class Robot extends TimedRobot {
 
     // when you stop the robot, this gets called
     @Override
-    public void disabledInit() { Constants.DISABLED_INIT_FUNC.accept(this);  }
+    public void disabledInit() { Configured.DISABLED_INIT_FUNC.accept(this);  }
 
     // while the robot is disabled, this is repeatedly running
     // no driving in here
     @Override
-    public void disabledPeriodic() { Constants.DISABLED_PER_FUNC.accept(this);  }
+    public void disabledPeriodic() { Configured.DISABLED_PER_FUNC.accept(this);  }
 
 
 
