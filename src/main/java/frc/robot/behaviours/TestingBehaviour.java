@@ -18,8 +18,9 @@ public class TestingBehaviour {
     public static Consumer<Robot> teleOpPeriodic = new Consumer<Robot>(){
         @Override public void accept(Robot r) {
 
-            driveUtil.setPowerUniform(r.drive, r.input.controller.getLeftX());
-
+            driveUtil.setPowerTank(r.drive, r.input.controller.getLeftY(), r.input.controller.getLeftX(), r.input.controller.getRightTriggerAxis());
+            String in = SmartDashboard.getString("Log Input", "");
+            SmartDashboard.putString("Input return", in);
         }
     };
 

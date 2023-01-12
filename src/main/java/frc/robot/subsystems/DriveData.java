@@ -1,24 +1,26 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Constants;
+import frc.robot.Configured;
 
 public class DriveData {
 
-    public final Spark frontLeftDrive = new Spark(Constants.DRIVE_FRONT_LEFT_PORT);
-    public final Spark frontRightDrive = new Spark(Constants.DRIVE_FRONT_RIGHT_PORT);
-    public final Spark backLeftDrive = new Spark(Constants.DRIVE_BACK_LEFT_PORT);
-    public final Spark backRightDrive = new Spark(Constants.DRIVE_BACK_RIGHT_PORT);
+    public Spark frontLeftDrive;
+    public Spark frontRightDrive;
+    public Spark backLeftDrive;
+    public Spark backRightDrive;
 
     public DriveData() {
-        this.frontLeftDrive.setInverted(Constants.DRIVE_FRONT_LEFT_FLIPPED);
-        this.frontRightDrive.setInverted(Constants.DRIVE_FRONT_RIGHT_FLIPPED);
-        this.backLeftDrive.setInverted(Constants.DRIVE_BACK_LEFT_FLIPPED);
-        this.backRightDrive.setInverted(Constants.DRIVE_BACK_RIGHT_FLIPPED);
+        this.frontLeftDrive = new Spark(Configured.DRIVE_FRONT_LEFT_PORT);
+        this.frontRightDrive = new Spark(Configured.DRIVE_FRONT_RIGHT_PORT);
+        this.backLeftDrive = new Spark(Configured.DRIVE_BACK_LEFT_PORT);
+        this.backRightDrive = new Spark(Configured.DRIVE_BACK_RIGHT_PORT);
+
+        this.frontLeftDrive.setInverted(Configured.DRIVE_FRONT_LEFT_FLIPPED);
+        this.frontRightDrive.setInverted(Configured.DRIVE_FRONT_RIGHT_FLIPPED);
+        this.backLeftDrive.setInverted(Configured.DRIVE_BACK_LEFT_FLIPPED);
+        this.backRightDrive.setInverted(Configured.DRIVE_BACK_RIGHT_FLIPPED);
 
 
     }

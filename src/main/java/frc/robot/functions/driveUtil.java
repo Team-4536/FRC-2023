@@ -19,10 +19,10 @@ public final class driveUtil {
 
 
         double[] speeds = {
-                (x + y - turning),
-                (x - y + turning),
-                (x - y - turning),
-                (x + y + turning),
+                (y + x - turning),
+                (y - x + turning),
+                (y - x - turning),
+                (y + x + turning),
         };
 
 
