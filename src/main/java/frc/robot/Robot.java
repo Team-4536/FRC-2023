@@ -10,6 +10,7 @@ import java.util.function.Consumer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.behaviours.BehaviourUtil;
 import frc.robot.behaviours.FinalBehaviour;
+import frc.robot.behaviours.TestingBehaviour;
 import frc.robot.functions.telemetryUtil;
 import frc.robot.subsystems.DriveData;
 import frc.robot.subsystems.InputData;
@@ -34,6 +35,9 @@ public class Robot extends TimedRobot {
 
     public static Consumer<Robot> AUTO_INIT_FUNC = NULL_FUNC;
     public static Consumer<Robot> AUTO_PER_FUNC = NULL_FUNC;
+
+    public static Consumer<Robot> TEST_INIT_FUNC = TestingBehaviour.init;
+    public static Consumer<Robot> TEST_PER_FUNC = TestingBehaviour.periodic;
 
     public static Consumer<Robot> DISABLED_INIT_FUNC = BehaviourUtil.stopDrive;
     public static Consumer<Robot> DISABLED_PER_FUNC = BehaviourUtil.stopDrive;
@@ -123,9 +127,9 @@ public class Robot extends TimedRobot {
     // runs once at the begining of test mode
     // intended for testing unvalidaded code
     @Override
-    public void testInit() { }
+    public void testInit() { TEST_INIT_FUNC.accept(this); }
 
     // runs repeatedly during test mode
     @Override
-    public void testPeriodic() {}
+    public void testPeriodic() { TEST_PER_FUNC.accept(this); }
 }
