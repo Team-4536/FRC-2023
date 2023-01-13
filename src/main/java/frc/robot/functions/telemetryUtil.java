@@ -3,6 +3,8 @@ package frc.robot.functions;
 import java.util.ArrayList;
 import java.util.Set;
 
+import edu.wpi.first.util.sendable.Sendable;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class telemetryUtil {
@@ -36,23 +38,18 @@ public class telemetryUtil {
 
 
 
+    public static SendableChooser<String> AutoInitPicker;
+    public static SendableChooser<String> AutoPerPicker;
 
+    public static void initChoosers() {
 
-    public static void updateDashboard() {
-
-
-        for(String s : debugLog) {
-            SmartDashboard.putString(s, ""); }
-        //SmartDashboard.putString("** Debug Log", built);
-
-        for(String s : sysLog) {
-            SmartDashboard.putString(s, ""); }
-        //SmartDashboard.putString("** Systems Log", built);
-
-        if(!SmartDashboard.getKeys().contains("Log Input")) {
-            SmartDashboard.putString("Log Input", ""); }
+        AutoInitPicker.setDefaultOption("nothing", "");
+        AutoPerPicker.setDefaultOption("nothing", "");
     }
 
+    public static void grabChoosers() {
+
+    }
 
 
     public static void clearDashboard() {
