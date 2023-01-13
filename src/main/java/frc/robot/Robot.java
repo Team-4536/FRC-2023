@@ -7,7 +7,7 @@ package frc.robot;
 import java.util.function.Consumer;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import frc.robot.functions.TelemetryUtil;
+import frc.robot.functions.telemetryUtil;
 import frc.robot.subsystems.DriveData;
 import frc.robot.subsystems.InputData;
 
@@ -36,13 +36,15 @@ public class Robot extends TimedRobot {
         this.drive = new DriveData();
         this.input = new InputData();
 
-        TelemetryUtil.clearDashboard();
+        telemetryUtil.clearDashboard();
+
+        Constants.ROBOT_INIT_FUNC.accept(this);
     }
 
     // runs constantly, no matter the mode
     // don't put motor control stuff in here lol
     @Override
-    public void robotPeriodic() { Constants.ROBOT_PER_FUNC.accept(this); TelemetryUtil.updateDashboard(); }
+    public void robotPeriodic() { Constants.ROBOT_PER_FUNC.accept(this); telemetryUtil.updateDashboard(); }
 
 
 

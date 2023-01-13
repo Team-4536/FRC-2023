@@ -5,7 +5,7 @@ import java.util.Set;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class TelemetryUtil {
+public class telemetryUtil {
 
 
     public static void warnOn(boolean condition, String title) {

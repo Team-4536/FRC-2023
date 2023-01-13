@@ -4,7 +4,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.functions.TelemetryUtil;
+import frc.robot.functions.telemetryUtil;
 import frc.robot.Constants;
 
 public final class InputData {
@@ -22,8 +22,8 @@ public final class InputData {
 
     public void sendTelemetry() {
 
-        TelemetryUtil.warnOn(!controller.isConnected(), "Controller A is disconnected");
-        TelemetryUtil.warnOn(!joystick.isConnected(), "Controller B is disconnected");
+        telemetryUtil.warnOn(!controller.isConnected(), "Controller A is disconnected");
+        telemetryUtil.warnOn(!joystick.isConnected(), "Controller B is disconnected");
 
     }
 }
