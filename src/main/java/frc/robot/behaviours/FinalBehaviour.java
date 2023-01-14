@@ -9,7 +9,6 @@ import frc.robot.functions.driveUtil;
 public class FinalBehaviour {
 
     public static Consumer<Robot> robotInit = r -> {
-        Robot.TELEOP_PER_FUNC = FinalBehaviour.teleOpPeriodic;
 
         Robot.DISABLED_INIT_FUNC = BehaviourUtil.stopDrive;
         Robot.DISABLED_PER_FUNC = BehaviourUtil.stopDrive;
