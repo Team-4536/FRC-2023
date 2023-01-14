@@ -48,7 +48,8 @@ public class telemetryUtil {
             "TestingBehaviour.init",
             "TestingBehaviour.periodic",
             "TestingBehaviour.auto_1",
-            "TestingBehaviour.auto_2"
+            "TestingBehaviour.auto_2",
+            "AuoFunctions.autoTest"
         ));
 
 
