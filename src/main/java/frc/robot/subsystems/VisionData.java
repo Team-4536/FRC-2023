@@ -14,10 +14,10 @@ public class VisionData {
     public NetworkTableEntry ty = limelight.getEntry("ty");
     public NetworkTableEntry ta = limelight.getEntry("ta");
 
-    public boolean targetFound = (!(tv.getDouble(0.0) == 0));
-    public double targetX = tx.getDouble(0.0);
-    public double targetY = ty.getDouble(0.0);
-    public double targetArea = ta.getDouble(0.0);
+    private boolean targetFound = (!(tv.getDouble(0.0) == 0));
+    private double targetX = tx.getDouble(0.0);
+    private double targetY = ty.getDouble(0.0);
+    private double targetArea = ta.getDouble(0.0);
 
     public void sendTelemetry(){
 
