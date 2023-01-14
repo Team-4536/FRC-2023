@@ -82,6 +82,8 @@ public class Robot extends TimedRobot {
 
         this.drive.sendTelemetry();
         this.input.sendTelemetry();
+        this.gyro.sendTelemetry();
+        this.vision.sendTelemetry();
 
         ROBOT_PER_FUNC.accept(this);
     }

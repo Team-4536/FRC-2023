@@ -6,6 +6,7 @@
       "/LiveWindow/Ungrouped/Spark[2]": "Motor Controller",
       "/LiveWindow/Ungrouped/Spark[3]": "Motor Controller",
       "/LiveWindow/Ungrouped/Spark[4]": "Motor Controller",
+      "/LiveWindow/Ungrouped/navX-Sensor[4]": "Gyro",
       "/SmartDashboard/Auto init picker": "String Chooser",
       "/SmartDashboard/Auto periodic chooser": "String Chooser",
       "/SmartDashboard/SendableChooser[0]": "String Chooser",
