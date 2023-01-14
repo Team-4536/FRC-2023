@@ -65,6 +65,13 @@ public final class driveUtil {
         drive.backRightDrive.set(power);
     }
 
+    public static void tankLR(DriveData drive, double leftPower, double rightPower) {
+        drive.frontLeftDrive.set(leftPower);
+        drive.frontRightDrive.set(rightPower);
+        drive.backLeftDrive.set(leftPower);
+        drive.backRightDrive.set(rightPower);
+    }
+
     public static void stop(DriveData drive){
         setPowerUniform(drive, 0.0);
     }
