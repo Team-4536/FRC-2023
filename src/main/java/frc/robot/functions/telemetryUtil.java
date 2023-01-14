@@ -11,6 +11,31 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
+
+
+
+
+
+class DashFuncChooser {
+    SendableChooser<String> chooser;
+    String name;
+    Consumer<Consumer<Robot>> setTarget;
+
+    public DashFuncChooser() { };
+    public DashFuncChooser(SendableChooser<String> c, String n, Consumer<Consumer<Robot>> t) {
+        this.chooser = c;
+        this.name = n;
+        this.setTarget = t; };
+}
+
+
+
+
+
+
+
+
+
 public class telemetryUtil {
 
 
@@ -35,10 +60,13 @@ public class telemetryUtil {
 
 
 
-    public static SendableChooser<String> autoInitPicker;
-    public static SendableChooser<String> autoPerPicker;
-    public static SendableChooser<String> testInitPicker;
-    public static SendableChooser<String> testPerPicker;
+
+    public static final List<DashFuncChooser> funcChoosers = List.of(
+        new DashFuncChooser(new SendableChooser<String>(), "Auto Init", x -> { Robot.AUTO_INIT_FUNC = x; }),
+        new DashFuncChooser(new SendableChooser<String>(), "Auto Periodic", x -> { Robot.AUTO_PER_FUNC = x; }),
+        new DashFuncChooser(new SendableChooser<String>(), "Test Init", x -> { Robot.TEST_INIT_FUNC = x; }),
+        new DashFuncChooser(new SendableChooser<String>(), "Test Periodic", x -> { Robot.TEST_PER_FUNC = x; })
+    );
 
     public static void initChoosers() {
 
@@ -54,65 +82,48 @@ public class telemetryUtil {
         ));
 
 
-        autoInitPicker = new SendableChooser<String>();
-        SmartDashboard.putData("Auto init picker", autoInitPicker);
-        autoPerPicker = new SendableChooser<String>();
-        SmartDashboard.putData("Auto periodic chooser", autoPerPicker);
+        for(DashFuncChooser d : funcChoosers) {
 
-        testInitPicker = new SendableChooser<String>();
-        SmartDashboard.putData("Test init picker", testInitPicker);
-        testPerPicker = new SendableChooser<String>();
-        SmartDashboard.putData("Test periodic chooser", testPerPicker);
+            SmartDashboard.putData(d.name, d.chooser);
+            d.chooser.setDefaultOption("nothing", "");
 
-        autoInitPicker.setDefaultOption("nothing", "");
-        autoPerPicker.setDefaultOption("nothing", "");
-        testInitPicker.setDefaultOption("nothing", "");
-        testPerPicker.setDefaultOption("nothing", "");
-
-        for(int i = 0; i < funcNames.size(); i++) {
-            String s = funcNames.get(i);
-            autoInitPicker.addOption(s, s);
-            autoPerPicker.addOption(s, s);
-            testInitPicker.addOption(s, s);
-            testPerPicker.addOption(s, s);
+            for(int i = 0; i < funcNames.size(); i++) {
+                String s = funcNames.get(i);
+                d.chooser.addOption(s, s);
+            }
         }
 
+
     }
+
 
 
     @SuppressWarnings("unchecked")
-    private static void setFuncFromChooser(SendableChooser<String> chooser, Consumer<Consumer<Robot>> target) {
-
-        try{
-
-            String s = chooser.getSelected();
-
-            if(s.equals("")) {
-                target.accept( r -> { } );
-                return;
-            }
-
-
-
-            int idx = s.indexOf(".");
-            Class<?> c = Class.forName("frc.robot.behaviours." + s.substring(0,idx));
-            Field f = c.getField(s.substring(idx+1));
-
-            if(f.get(null) instanceof Consumer<?>) {
-                target.accept((Consumer<Robot>)f.get(null)); }
-
-        }
-        catch (Exception e) {
-            telemetryUtil.logError("getting choosers failed: " + e.toString());
-        }
-    }
-
     public static void grabChoosers() {
 
-        setFuncFromChooser(autoInitPicker, x -> Robot.AUTO_INIT_FUNC = x);
-        setFuncFromChooser(autoPerPicker, x -> Robot.AUTO_PER_FUNC = x);
-        setFuncFromChooser(testInitPicker, x -> Robot.TEST_INIT_FUNC = x);
-        setFuncFromChooser(testPerPicker, x -> Robot.TEST_PER_FUNC = x);
+        for(DashFuncChooser d : funcChoosers) {
+
+            try{
+
+                String s = d.chooser.getSelected();
+
+                if(s.equals("")) {
+                    d.setTarget.accept( r -> { } );
+                    return;
+                }
+
+                int idx = s.indexOf(".");
+                Class<?> c = Class.forName("frc.robot.behaviours." + s.substring(0,idx));
+                Field f = c.getField(s.substring(idx+1));
+
+                if(f.get(null) instanceof Consumer<?>) {
+                    d.setTarget.accept((Consumer<Robot>)f.get(null)); }
+
+            }
+            catch (Exception e) {
+                telemetryUtil.logError("getting choosers failed: " + e.toString());
+            }
+        }
     }
 
 }
