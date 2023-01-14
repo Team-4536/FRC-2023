@@ -3,10 +3,8 @@ package frc.robot.functions;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Consumer;
 
-import edu.wpi.first.math.Pair;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
@@ -21,29 +19,22 @@ public class telemetryUtil {
     }
 
     public static void logWarning(String title) {
-        sysLog.add("[WARNING] " + title);
+        SmartDashboard.putString("[WARNING] " + title, String.valueOf(Robot.tickMod));
     }
 
     public static void logError(String msg) {
-        sysLog.add("[ERROR] " + msg);
+        SmartDashboard.putString("[ERROR] " + msg, String.valueOf(Robot.tickMod));
     }
 
     public static void debugLog(String msg) {
-        debugLog.add(msg);
+        SmartDashboard.putString("[LOG] " + msg, String.valueOf(Robot.tickMod));
     }
 
 
-    public static ArrayList<String> sysLog = new ArrayList<String>();
-    public static ArrayList<String> debugLog = new ArrayList<String>();
-    public static boolean clearInputFlag = false;
 
 
-
-
-
-
-    public static SendableChooser<String> AutoInitPicker;
-    public static SendableChooser<String> AutoPerPicker;
+    public static SendableChooser<String> autoInitPicker;
+    public static SendableChooser<String> autoPerPicker;
 
     public static void initChoosers() {
 
@@ -59,54 +50,54 @@ public class telemetryUtil {
         ));
 
 
-        AutoInitPicker = new SendableChooser<String>();
-        SmartDashboard.putData(AutoInitPicker);
-        AutoPerPicker = new SendableChooser<String>();
-        SmartDashboard.putData(AutoPerPicker);
+        autoInitPicker = new SendableChooser<String>();
+        SmartDashboard.putData("Auto init picker", autoInitPicker);
+        autoPerPicker = new SendableChooser<String>();
+        SmartDashboard.putData("Auto periodic chooser", autoPerPicker);
 
-        AutoInitPicker.setDefaultOption("nothing", "");
-        AutoPerPicker.setDefaultOption("nothing", "");
+        autoInitPicker.setDefaultOption("nothing", "");
+        autoPerPicker.setDefaultOption("nothing", "");
 
         for(int i = 0; i < funcNames.size(); i++) {
             String s = funcNames.get(i);
-            AutoInitPicker.addOption(s, s);
-            AutoPerPicker.addOption(s, s);
+            autoInitPicker.addOption(s, s);
+            autoPerPicker.addOption(s, s);
         }
 
     }
 
-    public static void grabChoosers() {
-        try {
 
-            String s = AutoInitPicker.getSelected();
-            Class<?> c = Class.forName(s.substring(0,s.indexOf('.')));
-            Field f = c.getField(s.substring(s.indexOf('.')+1));
-            Object o = f.get(null);
-            if(o instanceof Consumer<?>) {
-                Robot.AUTO_INIT_FUNC = (Consumer<Robot>)o; }
+    @SuppressWarnings("unchecked")
+    private static void setFuncFromChooser(SendableChooser<String> chooser, Consumer<Consumer<Robot>> target) {
 
-            s = AutoPerPicker.getSelected();
-            c = Class.forName(s.substring(0,s.indexOf('.')));
-            f = c.getField(s.substring(s.indexOf('.')+1));
-            o = f.get(null);
-            if(o instanceof Consumer<?>) {
-                Robot.AUTO_PER_FUNC = (Consumer<Robot>)o; }
+        try{
+
+            String s = chooser.getSelected();
+
+            if(s.equals("")) {
+                target.accept( r -> { } );
+                return;
+            }
 
 
 
-        } catch(Exception e) {
+            int idx = s.indexOf(".");
+            Class<?> c = Class.forName("frc.robot.behaviours." + s.substring(0,idx));
+            Field f = c.getField(s.substring(idx+1));
+
+            if(f.get(null) instanceof Consumer<?>) {
+                target.accept((Consumer<Robot>)f.get(null)); }
+
+        }
+        catch (Exception e) {
             telemetryUtil.logError("getting choosers failed: " + e.toString());
         }
     }
 
+    public static void grabChoosers() {
 
-    public static void clearDashboard() {
-        Set<String> keys = SmartDashboard.getKeys();
-
-        for(String s : keys) {
-            SmartDashboard.delete(s);
-        }
+        setFuncFromChooser(autoInitPicker, x -> Robot.AUTO_INIT_FUNC = x);
+        setFuncFromChooser(autoPerPicker, x -> Robot.AUTO_PER_FUNC = x);
     }
-
 
 }

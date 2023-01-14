@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
     public static Consumer<Robot> AUTO_INIT_FUNC = NULL_FUNC;
     public static Consumer<Robot> AUTO_PER_FUNC = NULL_FUNC;
 
-    public static Consumer<Robot> TEST_INIT_FUNC = TestingBehaviour.init;
+    public static Consumer<Robot> TEST_INIT_FUNC = NULL_FUNC;
     public static Consumer<Robot> TEST_PER_FUNC = TestingBehaviour.periodic;
 
     public static Consumer<Robot> DISABLED_INIT_FUNC = BehaviourUtil.stopDrive;
@@ -44,6 +44,7 @@ public class Robot extends TimedRobot {
     //#endregion
 
 
+    public static int tickMod = 0;
 
     public DriveData drive;
     public InputData input;
@@ -58,7 +59,7 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
-        telemetryUtil.clearDashboard();
+        telemetryUtil.initChoosers();
 
         this.drive = new DriveData();
         this.input = new InputData();
@@ -70,6 +71,10 @@ public class Robot extends TimedRobot {
     // don't put motor control stuff in here lol
     @Override
     public void robotPeriodic() {
+
+        tickMod = (++tickMod)%10;
+
+        telemetryUtil.grabChoosers();
 
         this.drive.sendTelemetry();
         this.input.sendTelemetry();
