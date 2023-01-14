@@ -10,22 +10,15 @@ public class TestingBehaviour {
 
 
 
-    public static Consumer<Robot> periodic = new Consumer<Robot>(){
-        @Override public void accept(Robot r) {
-
-            driveUtil.setPowerTank(r.drive, r.input.controller.getLeftY(), r.input.controller.getLeftX(), r.input.controller.getRightTriggerAxis());
-        }
+    public static Consumer<Robot> periodic = r -> {
+        driveUtil.setPowerTank(r.drive, r.input.controller.getLeftY(), r.input.controller.getLeftX(), r.input.controller.getRightTriggerAxis());
     };
 
-    public static Consumer<Robot> auto_1 = new Consumer<Robot>() {
-        @Override public void accept(Robot r) {
-            telemetryUtil.debugLog("auto 1 is executing");
-        }
+    public static Consumer<Robot> auto_1 = r -> {
+        telemetryUtil.debugLog("auto 1 is executing");
     };
 
-    public static Consumer<Robot> auto_2 = new Consumer<Robot>() {
-        @Override public void accept(Robot r) {
-            telemetryUtil.debugLog("auto 2 is executing");
-        }
+    public static Consumer<Robot> auto_2 = r -> {
+        telemetryUtil.debugLog("auto 2 is executing");
     };
 }

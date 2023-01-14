@@ -10,7 +10,6 @@ import java.util.function.Consumer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.behaviours.BehaviourUtil;
 import frc.robot.behaviours.FinalBehaviour;
-import frc.robot.behaviours.TestingBehaviour;
 import frc.robot.functions.telemetryUtil;
 import frc.robot.subsystems.DriveData;
 import frc.robot.subsystems.InputData;
@@ -24,8 +23,7 @@ import frc.robot.subsystems.InputData;
 public class Robot extends TimedRobot {
 
     //#region fns!
-    private static final Consumer<Robot> NULL_FUNC = new Consumer<Robot>() {
-        @Override public void accept(Robot r) { } };
+    private static final Consumer<Robot> NULL_FUNC = r -> { };
 
     public static Consumer<Robot> ROBOT_INIT_FUNC = FinalBehaviour.robotInit;
     public static Consumer<Robot> ROBOT_PER_FUNC = NULL_FUNC;
