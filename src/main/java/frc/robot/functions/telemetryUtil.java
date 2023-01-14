@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import org.reflections.Reflections;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
@@ -19,15 +21,15 @@ public class telemetryUtil {
     }
 
     public static void logWarning(String title) {
-        SmartDashboard.putString("[WARNING] " + title, String.valueOf(Robot.tickMod));
+        SmartDashboard.putString("[WARNING] " + title, String.valueOf(Robot.timeSinceInit).substring(0, 5));
     }
 
     public static void logError(String msg) {
-        SmartDashboard.putString("[ERROR] " + msg, String.valueOf(Robot.tickMod));
+        SmartDashboard.putString("[ERROR] " + msg, String.valueOf(Robot.timeSinceInit).substring(0, 5));
     }
 
     public static void debugLog(String msg) {
-        SmartDashboard.putString("[LOG] " + msg, String.valueOf(Robot.tickMod));
+        SmartDashboard.putString("[LOG] " + msg, String.valueOf(Robot.timeSinceInit).substring(0, 5));
     }
 
 
@@ -47,8 +49,7 @@ public class telemetryUtil {
             "FinalBehaviour.teleOpPeriodic",
             "TestingBehaviour.init",
             "TestingBehaviour.periodic",
-            "TestingBehaviour.auto_1",
-            "TestingBehaviour.auto_2",
+            "TestingBehaviour.testLog",
             "AuoFunctions.autoTest"
         ));
 
