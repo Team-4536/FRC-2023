@@ -1,0 +1,70 @@
+{
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/LiveWindow/Ungrouped/Spark[1]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Spark[2]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Spark[3]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Spark[4]": "Motor Controller",
+      "/SmartDashboard/Auto init picker": "String Chooser",
+      "/SmartDashboard/Auto periodic chooser": "String Chooser",
+      "/SmartDashboard/SendableChooser[0]": "String Chooser",
+      "/SmartDashboard/SendableChooser[1]": "String Chooser",
+      "/SmartDashboard/SendableChooser[2]": "String Chooser",
+      "/SmartDashboard/SendableChooser[3]": "String Chooser",
+      "/SmartDashboard/Test init picker": "String Chooser",
+      "/SmartDashboard/Test periodic chooser": "String Chooser"
+    },
+    "windows": {
+      "/SmartDashboard/Auto init picker": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Auto periodic chooser": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Test init picker": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Test periodic chooser": {
+        "window": {
+          "visible": true
+        }
+      }
+    }
+  },
+  "NetworkTables": {
+    "LiveWindow": {
+      "Ungrouped": {
+        "open": true
+      }
+    },
+    "SmartDashboard": {
+      "SendableChooser[0]": {
+        "open": true
+      },
+      "Test init picker": {
+        "open": true
+      },
+      "open": true
+    }
+  },
+  "Plot": {
+    "Plot <0>": {
+      "plots": [
+        {
+          "height": 338
+        }
+      ],
+      "window": {
+        "name": "hi there :)",
+        "visible": false
+      }
+    }
+  }
+}
