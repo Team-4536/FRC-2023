@@ -6,11 +6,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GyroData {
 
-    public final AHRS gyroscope = new AHRS();
+    public final AHRS globGyroscope = new AHRS();
+    public final AHRS localGyroscope = new AHRS();
 
     public void sendTelemetry(){
 
-        SmartDashboard.putNumber("Angle", gyroscope.getAngle());
+        SmartDashboard.putNumber("Global Angle", globGyroscope.getAngle());
+        SmartDashboard.putNumber("Local Angle", localGyroscope.getAngle());
 
     }
     
