@@ -4,10 +4,6 @@
 
 package frc.robot;
 
-import java.util.function.Consumer;
-
-import frc.robot.behaviours.TestingBehaviour;
-
 public final class Constants {
 
     public static final String MASTER_CONFIG_NAME = "robotConfig.cnf";
@@ -35,27 +31,4 @@ public final class Constants {
 
     public static final int CONTROLLER_PORT = 0;
     public static final int JOYSTICK_PORT = 1;
-
-
-
-
-
-
-
-
-    private static final Consumer<Robot> NULL_FUNC = new Consumer<Robot>() {
-        @Override public void accept(Robot r) { } };
-
-    public static final Consumer<Robot> ROBOT_INIT_FUNC = NULL_FUNC;
-    public static final Consumer<Robot> ROBOT_PER_FUNC = TestingBehaviour.botPeriodic;
-
-    public static final Consumer<Robot> TELEOP_INIT_FUNC = NULL_FUNC;
-    public static final Consumer<Robot> TELEOP_PER_FUNC = TestingBehaviour.teleOpPeriodic;
-
-    public static final Consumer<Robot> AUTO_INIT_FUNC = NULL_FUNC;
-    public static final Consumer<Robot> AUTO_PER_FUNC = NULL_FUNC;
-
-    public static final Consumer<Robot> DISABLED_INIT_FUNC = TestingBehaviour.disabledInit;
-    public static final Consumer<Robot> DISABLED_PER_FUNC = TestingBehaviour.disabledPeriodic;
-
 }

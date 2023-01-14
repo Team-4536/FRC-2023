@@ -4,9 +4,13 @@
 
 package frc.robot;
 
+
 import java.util.function.Consumer;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import frc.robot.behaviours.BehaviourUtil;
+import frc.robot.behaviours.FinalBehaviour;
+import frc.robot.behaviours.TestingBehaviour;
 import frc.robot.functions.telemetryUtil;
 import frc.robot.subsystems.DriveData;
 import frc.robot.subsystems.InputData;
@@ -19,11 +23,33 @@ import frc.robot.subsystems.InputData;
  */
 public class Robot extends TimedRobot {
 
+    //#region fns!
+    private static final Consumer<Robot> NULL_FUNC = new Consumer<Robot>() {
+        @Override public void accept(Robot r) { } };
+
+    public static Consumer<Robot> ROBOT_INIT_FUNC = FinalBehaviour.robotInit;
+    public static Consumer<Robot> ROBOT_PER_FUNC = NULL_FUNC;
+
+    public static Consumer<Robot> TELEOP_INIT_FUNC = NULL_FUNC;
+    public static Consumer<Robot> TELEOP_PER_FUNC = NULL_FUNC;
+
+    public static Consumer<Robot> AUTO_INIT_FUNC = NULL_FUNC;
+    public static Consumer<Robot> AUTO_PER_FUNC = NULL_FUNC;
+
+    public static Consumer<Robot> TEST_INIT_FUNC = NULL_FUNC;
+    public static Consumer<Robot> TEST_PER_FUNC = NULL_FUNC;
+
+    public static Consumer<Robot> DISABLED_INIT_FUNC = BehaviourUtil.stopDrive;
+    public static Consumer<Robot> DISABLED_PER_FUNC = BehaviourUtil.stopDrive;
+    //#endregion
 
 
+    public static int tickMod = 0;
 
     public DriveData drive;
     public InputData input;
+
+
 
 
 
@@ -33,29 +59,39 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
+        telemetryUtil.initChoosers();
+
         this.drive = new DriveData();
         this.input = new InputData();
 
-        telemetryUtil.clearDashboard();
-
-        Constants.ROBOT_INIT_FUNC.accept(this);
+        ROBOT_INIT_FUNC.accept(this);
     }
 
     // runs constantly, no matter the mode
     // don't put motor control stuff in here lol
     @Override
-    public void robotPeriodic() { Constants.ROBOT_PER_FUNC.accept(this); telemetryUtil.updateDashboard(); }
+    public void robotPeriodic() {
+
+        tickMod = (++tickMod)%10;
+
+        telemetryUtil.grabChoosers();
+
+        this.drive.sendTelemetry();
+        this.input.sendTelemetry();
+
+        ROBOT_PER_FUNC.accept(this);
+    }
 
 
 
 
     // runs once when autos start
     @Override
-    public void autonomousInit() { Constants.AUTO_INIT_FUNC.accept(this);  }
+    public void autonomousInit() { AUTO_INIT_FUNC.accept(this);  }
 
     // runs repeatedly during autos
     @Override
-    public void autonomousPeriodic() { Constants.AUTO_PER_FUNC.accept(this); }
+    public void autonomousPeriodic() { AUTO_PER_FUNC.accept(this); }
 
 
 
@@ -66,11 +102,11 @@ public class Robot extends TimedRobot {
 
     // runs once on teleop start
     @Override
-    public void teleopInit() {  Constants.TELEOP_INIT_FUNC.accept(this); }
+    public void teleopInit() {  TELEOP_INIT_FUNC.accept(this); }
 
     // runs repeatedly during teleop
     @Override
-    public void teleopPeriodic() { Constants.TELEOP_PER_FUNC.accept(this);  }
+    public void teleopPeriodic() { TELEOP_PER_FUNC.accept(this);  }
 
 
 
@@ -79,12 +115,12 @@ public class Robot extends TimedRobot {
 
     // when you stop the robot, this gets called
     @Override
-    public void disabledInit() { Constants.DISABLED_INIT_FUNC.accept(this);  }
+    public void disabledInit() { DISABLED_INIT_FUNC.accept(this);  }
 
     // while the robot is disabled, this is repeatedly running
     // no driving in here
     @Override
-    public void disabledPeriodic() { Constants.DISABLED_PER_FUNC.accept(this);  }
+    public void disabledPeriodic() { DISABLED_PER_FUNC.accept(this);  }
 
 
 
@@ -96,9 +132,9 @@ public class Robot extends TimedRobot {
     // runs once at the begining of test mode
     // intended for testing unvalidaded code
     @Override
-    public void testInit() { }
+    public void testInit() { TEST_INIT_FUNC.accept(this); }
 
     // runs repeatedly during test mode
     @Override
-    public void testPeriodic() {}
+    public void testPeriodic() { TEST_PER_FUNC.accept(this); }
 }
