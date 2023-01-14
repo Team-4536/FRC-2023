@@ -35,6 +35,8 @@ public class telemetryUtil {
 
     public static SendableChooser<String> autoInitPicker;
     public static SendableChooser<String> autoPerPicker;
+    public static SendableChooser<String> testInitPicker;
+    public static SendableChooser<String> testPerPicker;
 
     public static void initChoosers() {
 
@@ -55,13 +57,23 @@ public class telemetryUtil {
         autoPerPicker = new SendableChooser<String>();
         SmartDashboard.putData("Auto periodic chooser", autoPerPicker);
 
+        testInitPicker = new SendableChooser<String>();
+        SmartDashboard.putData("Test init picker", testInitPicker);
+        testPerPicker = new SendableChooser<String>();
+        SmartDashboard.putData("Test periodic chooser", testPerPicker);
+
         autoInitPicker.setDefaultOption("nothing", "");
         autoPerPicker.setDefaultOption("nothing", "");
+        testInitPicker.setDefaultOption("nothing", "");
+        testPerPicker.setDefaultOption("nothing", "");
+        telemetryUtil.debugLog("hello :)");
 
         for(int i = 0; i < funcNames.size(); i++) {
             String s = funcNames.get(i);
             autoInitPicker.addOption(s, s);
             autoPerPicker.addOption(s, s);
+            testInitPicker.addOption(s, s);
+            testPerPicker.addOption(s, s);
         }
 
     }
@@ -98,6 +110,8 @@ public class telemetryUtil {
 
         setFuncFromChooser(autoInitPicker, x -> Robot.AUTO_INIT_FUNC = x);
         setFuncFromChooser(autoPerPicker, x -> Robot.AUTO_PER_FUNC = x);
+        setFuncFromChooser(testInitPicker, x -> Robot.TEST_INIT_FUNC = x);
+        setFuncFromChooser(testPerPicker, x -> Robot.TEST_PER_FUNC = x);
     }
 
 }

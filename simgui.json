@@ -11,7 +11,9 @@
       "/SmartDashboard/SendableChooser[0]": "String Chooser",
       "/SmartDashboard/SendableChooser[1]": "String Chooser",
       "/SmartDashboard/SendableChooser[2]": "String Chooser",
-      "/SmartDashboard/SendableChooser[3]": "String Chooser"
+      "/SmartDashboard/SendableChooser[3]": "String Chooser",
+      "/SmartDashboard/Test init picker": "String Chooser",
+      "/SmartDashboard/Test periodic chooser": "String Chooser"
     },
     "windows": {
       "/SmartDashboard/Auto init picker": {

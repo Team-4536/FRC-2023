@@ -37,7 +37,7 @@ public class Robot extends TimedRobot {
     public static Consumer<Robot> AUTO_PER_FUNC = NULL_FUNC;
 
     public static Consumer<Robot> TEST_INIT_FUNC = NULL_FUNC;
-    public static Consumer<Robot> TEST_PER_FUNC = TestingBehaviour.periodic;
+    public static Consumer<Robot> TEST_PER_FUNC = NULL_FUNC;
 
     public static Consumer<Robot> DISABLED_INIT_FUNC = BehaviourUtil.stopDrive;
     public static Consumer<Robot> DISABLED_PER_FUNC = BehaviourUtil.stopDrive;
