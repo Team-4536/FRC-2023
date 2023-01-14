@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
@@ -10,6 +11,11 @@ public class DriveData {
     public Spark frontRightDrive;
     public Spark backLeftDrive;
     public Spark backRightDrive;
+    
+    public Encoder frontLeftEncoder;
+    public Encoder frontRightEncoder;
+    public Encoder backLeftEncoder;
+    public Encoder backRightEncoder;
 
     public DriveData() {
         this.frontLeftDrive = new Spark(Constants.DRIVE_FRONT_LEFT_PORT);
@@ -21,6 +27,12 @@ public class DriveData {
         this.frontRightDrive.setInverted(Constants.DRIVE_FRONT_RIGHT_FLIPPED);
         this.backLeftDrive.setInverted(Constants.DRIVE_BACK_LEFT_FLIPPED);
         this.backRightDrive.setInverted(Constants.DRIVE_BACK_RIGHT_FLIPPED);
+
+        this.frontLeftEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k2X);
+        this.frontRightEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k2X);
+        this.backLeftEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k2X);
+        this.backRightEncoder = new Encoder(0, 1, false, Encoder.EncodingType.k2X);
+
 
 
     }
