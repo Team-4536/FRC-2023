@@ -67,7 +67,6 @@ public class telemetryUtil {
         autoPerPicker.setDefaultOption("nothing", "");
         testInitPicker.setDefaultOption("nothing", "");
         testPerPicker.setDefaultOption("nothing", "");
-        telemetryUtil.debugLog("hello :)");
 
         for(int i = 0; i < funcNames.size(); i++) {
             String s = funcNames.get(i);

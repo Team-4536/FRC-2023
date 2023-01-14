@@ -25,6 +25,16 @@
         "window": {
           "visible": true
         }
+      },
+      "/SmartDashboard/Test init picker": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Test periodic chooser": {
+        "window": {
+          "visible": true
+        }
       }
     }
   },
@@ -36,6 +46,9 @@
     },
     "SmartDashboard": {
       "SendableChooser[0]": {
+        "open": true
+      },
+      "Test init picker": {
         "open": true
       },
       "open": true
