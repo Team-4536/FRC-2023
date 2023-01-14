@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import frc.robot.functions.telemetryUtil;
 import frc.robot.subsystems.DriveData;
 import frc.robot.subsystems.InputData;
+import frc.robot.subsystems.VisionData;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -22,6 +23,7 @@ public class Robot extends TimedRobot {
 
     public DriveData drive;
     public InputData input;
+    public VisionData vision;
 
 
 
@@ -34,6 +36,7 @@ public class Robot extends TimedRobot {
 
         this.drive = new DriveData();
         this.input = new InputData();
+        this.vision = new VisionData();
 
         Configured.ROBOT_INIT_FUNC.accept(this);
         telemetryUtil.clearDashboard();

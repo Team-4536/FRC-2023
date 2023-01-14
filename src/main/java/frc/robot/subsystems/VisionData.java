@@ -21,13 +21,39 @@ public class VisionData {
 
     public void sendTelemetry(){
 
-      SmartDashboard.putBoolean("Target Found", targetFound);
-      SmartDashboard.putNumber("Target X", targetX);
-      SmartDashboard.putNumber("Target Y", targetY);
-      SmartDashboard.putNumber("Target Area", targetArea);
+      SmartDashboard.putBoolean("Target Found", getTargets());
+      SmartDashboard.putNumber("Target X", getX());
+      SmartDashboard.putNumber("Target Y", getY());
+      SmartDashboard.putNumber("Target Area", getArea());
 
     }
 
+    public boolean getTargets(){
+
+      targetFound = (!(tv.getDouble(0.0) == 0));
+
+      return targetFound;
+    }
+
+    public double getX(){
+
+      targetX = tx.getDouble(0.0);
+      return targetX;
+
+    }
+
+    public double getY(){
+
+      targetY = ty.getDouble(0.0);
+      return targetY;
+
+    }
     
+    public double getArea(){
+
+      targetArea = ta.getDouble(0.0);
+      return targetArea;
+
+    }
     
 }

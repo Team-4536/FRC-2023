@@ -12,6 +12,7 @@ public class TestingBehaviour {
         @Override public void accept(Robot r) {
             r.drive.sendTelemetry();
             r.input.sendTelemetry();
+            r.vision.sendTelemetry();
         }
     };
 
@@ -21,6 +22,8 @@ public class TestingBehaviour {
             driveUtil.setPowerTank(r.drive, r.input.controller.getLeftY(), r.input.controller.getLeftX(), r.input.controller.getRightTriggerAxis());
             String in = SmartDashboard.getString("Log Input", "");
             SmartDashboard.putString("Input return", in);
+
+            SmartDashboard.putNumber("asdfjicadjsf", r.vision.targetX);
         }
     };
 
