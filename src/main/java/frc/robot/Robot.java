@@ -27,7 +27,7 @@ public class Robot extends TimedRobot {
     //#region fns!
     private static final Consumer<Robot> NULL_FUNC = r -> { };
 
-    public static Consumer<Robot> ROBOT_INIT_FUNC = FinalBehaviour.robotInit;
+    public static Consumer<Robot> ROBOT_INIT_FUNC = NULL_FUNC;
     public static Consumer<Robot> ROBOT_PER_FUNC = NULL_FUNC;
 
     public static Consumer<Robot> TELEOP_INIT_FUNC = NULL_FUNC;
