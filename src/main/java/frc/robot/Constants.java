@@ -6,9 +6,7 @@ package frc.robot;
 
 public final class Constants {
 
-    public static final String MASTER_CONFIG_NAME = "robotConfig.cnf";
-
-
+    public static final long NANOS_PER_SECOND = 1000000000;
 
 
     public static final double POWER_SCALE_UPPER_BOUND = 1.0;

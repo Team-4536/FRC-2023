@@ -1,9 +1,13 @@
 package frc.robot.functions;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -44,15 +48,15 @@ public class telemetryUtil {
     }
 
     public static void logWarning(String title) {
-        SmartDashboard.putString("[WARNING] " + title, String.valueOf(Robot.tickMod));
+        SmartDashboard.putString("[WARNING] " + title, String.valueOf(Robot.timeSinceInit).substring(0, 5));
     }
 
     public static void logError(String msg) {
-        SmartDashboard.putString("[ERROR] " + msg, String.valueOf(Robot.tickMod));
+        SmartDashboard.putString("[ERROR] " + msg, String.valueOf(Robot.timeSinceInit).substring(0, 5));
     }
 
     public static void debugLog(String msg) {
-        SmartDashboard.putString("[LOG] " + msg, String.valueOf(Robot.tickMod));
+        SmartDashboard.putString("[LOG] " + msg, String.valueOf(Robot.timeSinceInit).substring(0, 5));
     }
 
 
@@ -66,19 +70,51 @@ public class telemetryUtil {
         new DashFuncChooser(new SendableChooser<String>(), "Test Periodic", x -> { Robot.TEST_PER_FUNC = x; })
     );
 
+
+
+
+
+
+
+
+
+
+
+
+
+    public static Set<Class<?>> findAllClassesUsingClassLoader(String packageName) {
+        InputStream stream = ClassLoader.getSystemClassLoader()
+            .getResourceAsStream(packageName.replaceAll("[.]", "/"));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+        return reader.lines()
+            .filter(line -> line.endsWith(".class"))
+            .map(line -> getClass(line, packageName))
+            .collect(Collectors.toSet());
+    }
+
+    private static Class<?> getClass(String className, String packageName) {
+        try {
+            return Class.forName(packageName + "."
+                + className.substring(0, className.lastIndexOf('.')));
+        } catch (ClassNotFoundException e) {
+            // handle the exception
+        }
+        return null;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static void initChoosers() {
-
-
-        ArrayList<String> funcNames = new ArrayList<String>(List.of(
-            "BehaviourUtil.stopDrive",
-            "FinalBehaviour.robotInit",
-            "FinalBehaviour.teleOpPeriodic",
-            "TestingBehaviour.init",
-            "TestingBehaviour.periodic",
-            "TestingBehaviour.auto_1",
-            "TestingBehaviour.auto_2",
-            "AuoFunctions.autoTest"
-        ));
 
 
         for(DashFuncChooser d : funcChoosers) {
@@ -86,9 +122,15 @@ public class telemetryUtil {
             SmartDashboard.putData(d.name, d.chooser);
             d.chooser.setDefaultOption("nothing", "");
 
-            for(int i = 0; i < funcNames.size(); i++) {
-                String s = funcNames.get(i);
-                d.chooser.addOption(s, s);
+            Set<Class<?>> classes = findAllClassesUsingClassLoader("frc.robot.behaviours");
+            for(Class<?> c : classes) {
+                for(Field m : c.getDeclaredFields()){
+
+                    if(m.getType().isAssignableFrom(Consumer.class)){
+                        String name = c.getSimpleName() + "." + m.getName();
+                        d.chooser.addOption(name, name);
+                    }
+                }
             }
         }
 

@@ -5,6 +5,8 @@
 package frc.robot;
 
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.function.Consumer;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -44,7 +46,10 @@ public class Robot extends TimedRobot {
     //#endregion
 
 
-    public static int tickMod = 0;
+    public static Instant startTime;
+    public static Instant prevtime;
+    public static double dt;
+    public static double timeSinceInit;
 
     public DriveData drive;
     public InputData input;
@@ -61,6 +66,9 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
+        startTime = Instant.now();
+        prevtime = Instant.now();
+
         telemetryUtil.initChoosers();
 
         this.drive = new DriveData();
@@ -76,7 +84,9 @@ public class Robot extends TimedRobot {
     @Override
     public void robotPeriodic() {
 
-        tickMod = (++tickMod)%10;
+        dt = Duration.between(prevtime, Instant.now()).toNanos() * (1.0/Constants.NANOS_PER_SECOND);
+        timeSinceInit = Duration.between(startTime, Instant.now()).toNanos() * (1.0/Constants.NANOS_PER_SECOND);
+        prevtime = Instant.now();
 
         telemetryUtil.grabChoosers();
 
