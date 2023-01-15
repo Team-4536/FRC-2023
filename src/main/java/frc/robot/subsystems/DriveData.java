@@ -7,7 +7,7 @@ import frc.robot.controllers.PIDController;
 
 public class DriveData {
 
-    public PIDController pidController = new PIDController(0.1, 0.1, 0);
+    public PIDController pidController = new PIDController(0.01, 0.01f, 0);
 
     public Spark frontLeftDrive;
     public Spark frontRightDrive;
