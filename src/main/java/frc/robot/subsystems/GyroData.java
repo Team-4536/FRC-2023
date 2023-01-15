@@ -15,5 +15,5 @@ public class GyroData {
         SmartDashboard.putNumber("Local Angle", localGyroscope.getAngle());
 
     }
-    
+
 }
