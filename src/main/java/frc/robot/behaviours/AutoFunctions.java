@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 
 import frc.robot.Robot;
 
-public class AuoFunctions {
+public class AutoFunctions {
 
     public static Consumer<Robot> autoTest = r -> {
 
