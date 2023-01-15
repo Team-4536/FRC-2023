@@ -150,7 +150,7 @@ public class telemetryUtil {
 
                 if(s.equals("")) {
                     d.setTarget.accept( r -> { } );
-                    return;
+                    continue;
                 }
 
                 int idx = s.indexOf(".");
