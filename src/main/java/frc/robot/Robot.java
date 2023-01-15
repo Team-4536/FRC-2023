@@ -10,7 +10,6 @@ import java.time.Instant;
 import java.util.function.Consumer;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.behaviours.BehaviourUtil;
 import frc.robot.behaviours.FinalBehaviour;
 import frc.robot.functions.telemetryUtil;
@@ -46,8 +45,6 @@ public class Robot extends TimedRobot {
     public static Consumer<Robot> DISABLED_PER_FUNC = BehaviourUtil.stopDrive;
     //#endregion
 
-
-    public static int tickMod = 0;
 
     public static Instant startTime;
     public static Instant prevtime;
@@ -90,7 +87,6 @@ public class Robot extends TimedRobot {
         dt = Duration.between(prevtime, Instant.now()).toNanos() * (1.0/Constants.NANOS_PER_SECOND);
         timeSinceInit = Duration.between(startTime, Instant.now()).toNanos() * (1.0/Constants.NANOS_PER_SECOND);
         prevtime = Instant.now();
-
 
         telemetryUtil.grabChoosers();
 

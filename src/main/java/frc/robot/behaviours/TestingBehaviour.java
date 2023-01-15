@@ -13,15 +13,15 @@ public class TestingBehaviour {
     static double vel = 0;
 
 
-
     public static Consumer<Robot> periodic = r -> {
 
         driveUtil.setPowerTank(r.drive, r.input.controller.getLeftY(), r.input.controller.getLeftX(), r.input.controller.getRightTriggerAxis());
+        telemetryUtil.debugLog("periodic test");
 
     };
 
     public static Consumer<Robot> testLog = r -> {
-        telemetryUtil.debugLog("auto 1 is executing");
+        telemetryUtil.debugLog("log test");
     };
 
 }

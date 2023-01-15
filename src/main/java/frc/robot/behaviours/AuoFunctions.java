@@ -8,5 +8,6 @@ public class AuoFunctions {
 
     public static Consumer<Robot> autoTest = r -> {
 
+
     };
 }
