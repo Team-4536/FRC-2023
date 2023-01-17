@@ -1,5 +1,30 @@
 {
   "HALProvider": {
+    "Encoders": {
+      "0": {
+        "header": {
+          "open": true
+        }
+      },
+      "1": {
+        "header": {
+          "open": true
+        }
+      },
+      "2": {
+        "header": {
+          "open": true
+        }
+      },
+      "3": {
+        "header": {
+          "open": true
+        }
+      },
+      "window": {
+        "visible": true
+      }
+    },
     "Other Devices": {
       "navX-Sensor[0]": {
         "header": {

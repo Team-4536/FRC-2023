@@ -48,4 +48,9 @@ public class V2d {
     public double dot(V2d b) {
         return this.x*b.x + this.y*b.y;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.x) + ", " + String.valueOf(this.y);
+    }
 }

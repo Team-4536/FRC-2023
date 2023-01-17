@@ -14,7 +14,7 @@ public class TestingBehaviour {
     public static Consumer<Robot> periodic = r -> {
 
         double d = r.drive.pidController.tick(r.gyro.globGyroscope.getAngle(), Robot.dt, true);
-        driveUtil.setPowerTank(r.drive, r.input.controller.getLeftY(), d, r.input.controller.getRightTriggerAxis()*2 - 1);
+        driveUtil.setPowerTank(r.drive, r.input.controller.getLeftY(), r.input.controller.getLeftX(), r.input.controller.getRightTriggerAxis()*2 - 1);
         p.updateBasic(Robot.dt, r.drive, r.gyro);
         p.sendTelemetry();
 

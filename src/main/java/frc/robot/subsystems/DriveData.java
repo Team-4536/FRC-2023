@@ -31,6 +31,10 @@ public class DriveData {
         this.backLeftDrive.setInverted(Constants.DRIVE_BACK_LEFT_FLIPPED);
         this.backRightDrive.setInverted(Constants.DRIVE_BACK_RIGHT_FLIPPED);
 
+        FLEncoder = new Encoder(0, 1);
+        FREncoder = new Encoder(2, 3);
+        BLEncoder = new Encoder(4, 5);
+        BREncoder = new Encoder(6, 7);
 
     }
 

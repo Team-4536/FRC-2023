@@ -1,9 +1,9 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.drive.Vector2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
+import frc.robot.*;
 import frc.robot.V2d;
 import frc.robot.functions.gyroUtil;
 
@@ -15,9 +15,8 @@ public class PositionData {
     public int BLPrev = 0;
     public int BRPrev = 0;
 
-    public Vector2d prevPosition;
-    public Vector2d prevVelocity;
-
+    public V2d prevPosition = new V2d();
+    public V2d prevVelocity = new V2d();
     public double angularVelocity;
     public double prevAngle;
 
@@ -73,6 +72,13 @@ public class PositionData {
         deltaP = deltaP.add(getMotorPosDeltaBasic(drive.BLEncoder, BLPrev, frAcc));
         deltaP = deltaP.add(getMotorPosDeltaBasic(drive.BREncoder, BRPrev, flAcc));
 
+        deltaP = deltaP.divide(4);
+
+        SmartDashboard.putString("I'm in hell", deltaP.toString());
+
+        this.prevVelocity = deltaP;
+        this.prevPosition = this.prevPosition.add(deltaP).multiply(Robot.dt);
+
 
         angularVelocity = gyro.globGyroscope.getAngle() - prevAngle;
         prevAngle = gyro.globGyroscope.getAngle();
@@ -125,8 +131,8 @@ public class PositionData {
 
 
     public void sendTelemetry() {
-        SmartDashboard.putString("Position Esitmate", String.valueOf(this.prevPosition));
-        SmartDashboard.putString("Velocity Esitmate", String.valueOf(this.prevVelocity));
+        SmartDashboard.putString("Position Esitmate", String.valueOf(this.prevPosition.x) + ", " + String.valueOf(this.prevPosition.y));
+        SmartDashboard.putString("Velocity Esitmate", String.valueOf(this.prevVelocity.x) + ", " + String.valueOf(this.prevPosition.y));
     }
 
 
