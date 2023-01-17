@@ -29,4 +29,17 @@ public final class Constants {
 
     public static final int CONTROLLER_PORT = 0;
     public static final int JOYSTICK_PORT = 1;
+
+    public static final class VisionInfo{
+
+        public static final double TAG_SIZE_FT2 = 3.0;
+
+        public static final double LIME_TOP_LIM_DEGREE = 20.5;
+        public static final double LIME_BOT_LIM_DEGREE = -20.5;
+
+        public static final double LIME_RIGHT_LIM_DEGREE = 27;
+        public static final double LIME_LEFT_LIM_DEGREE = -27;
+
+
+    }
 }
