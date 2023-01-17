@@ -34,10 +34,10 @@ public final class Constants {
 
         public static final double TAG_SIZE_IN2 = 36;
 
-        public static final double LIME_TOP_LIM_DEGREE = 20.5;
+        public static final double LIME_TOP_LIM_DEGREE = 24.85;
         public static final double LIME_BOT_LIM_DEGREE = -LIME_TOP_LIM_DEGREE;
 
-        public static final double LIME_RIGHT_LIM_DEGREE = 27;
+        public static final double LIME_RIGHT_LIM_DEGREE = 29.8;
         public static final double LIME_LEFT_LIM_DEGREE = -LIME_RIGHT_LIM_DEGREE;
 
         public static final double LIMELIGHT_FOV_ASPECT = Math.sin(Math.toRadians(27))/Math.sin(Math.toRadians(20.5));

@@ -21,7 +21,7 @@ public class visionUtil {
         double fovHeight = Math.sqrt(fovAreaIn/VisionInfo.LIMELIGHT_FOV_ASPECT);
         double fovLength = fovHeight * VisionInfo.LIMELIGHT_FOV_ASPECT;
 
-        double distanceFrom = fovHeight/Math.tan(Math.toDegrees(VisionInfo.LIME_TOP_LIM_DEGREE));
+        double distanceFrom = (fovHeight/2)/Math.tan(Math.toRadians(VisionInfo.LIME_TOP_LIM_DEGREE));
 
         SmartDashboard.putNumber("fov AREA", fovAreaIn);
         SmartDashboard.putNumber("fov HEIGHT", fovHeight);
