@@ -19,8 +19,16 @@ public final class Constants {
     public static final int ENCODER_TICKS_PER_REV = 2048;
     public static final double WHEEL_RADIUS = 7.0;
     public static final double WHEEL_CIRCUMFERENCE_INCHES = (2.0*WHEEL_RADIUS*Math.PI);
-    public static final double staticFriction = 0.1;
-    public static final double dynamicFriction = 0.01;
+
+    public static final double STATIC_FRICTION = 1;
+    public static final double DYNAMIC_FRICTION = 1;
+
+    // IN INCHES FROM THE COM
+    public static final V2d FL_MOTOR_POS = new V2d(-1, 1);
+    public static final V2d FR_MOTOR_POS = new V2d(1, 1);
+    public static final V2d BL_MOTOR_POS = new V2d(-1, -1);
+    public static final V2d BR_MOTOR_POS = new V2d(1, -1);
+    // end placeholders
 
 
     public static final int DRIVE_FRONT_LEFT_PORT = 2;
