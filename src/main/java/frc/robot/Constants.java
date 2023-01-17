@@ -40,6 +40,8 @@ public final class Constants {
         public static final double LIME_RIGHT_LIM_DEGREE = 27;
         public static final double LIME_LEFT_LIM_DEGREE = -27;
 
+        public static final double LIMELIGHT_FOV_ASPECT = Math.sin(Math.toRadians(27))/Math.sin(Math.toRadians(20.5));
+
 
     }
 }
