@@ -32,7 +32,7 @@ public final class Constants {
 
     public static final class VisionInfo{
 
-        public static final double TAG_SIZE_FT2 = 3.0;
+        public static final double TAG_SIZE_IN2 = 36;
 
         public static final double LIME_TOP_LIM_DEGREE = 20.5;
         public static final double LIME_BOT_LIM_DEGREE = -20.5;
