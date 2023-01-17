@@ -1,5 +1,6 @@
 package frc.robot.functions;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.VisionInfo;
 import frc.robot.subsystems.DriveData;
 import frc.robot.subsystems.GyroData;
@@ -21,6 +22,11 @@ public class visionUtil {
         double fovLength = fovHeight * VisionInfo.LIMELIGHT_FOV_ASPECT;
 
         double distanceFrom = fovHeight/Math.tan(Math.toDegrees(VisionInfo.LIME_TOP_LIM_DEGREE));
+
+        SmartDashboard.putNumber("fov AREA", fovAreaIn);
+        SmartDashboard.putNumber("fov HEIGHT", fovHeight);
+        SmartDashboard.putNumber("fov LENGTH", fovLength);
+        SmartDashboard.putNumber("distance FROM", distanceFrom);
 
         return distanceFrom;
 
