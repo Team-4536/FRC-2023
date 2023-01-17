@@ -25,5 +25,16 @@ public class visionUtil {
         return distanceFrom;
 
     }
+
+    public static double horizontalOffset(double tArea, double tX){
+
+        double fovAreaIn = (100/tArea) * VisionInfo.TAG_SIZE_IN2;
+
+        double fovHeight = Math.sqrt(fovAreaIn/VisionInfo.LIMELIGHT_FOV_ASPECT);
+        double fovLength = fovHeight * VisionInfo.LIMELIGHT_FOV_ASPECT;
+
+        return (tX/VisionInfo.LIME_RIGHT_LIM_DEGREE) * (fovLength/2);
+
+    }
     
 }
