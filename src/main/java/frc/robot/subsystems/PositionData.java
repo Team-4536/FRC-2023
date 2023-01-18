@@ -78,6 +78,7 @@ public class PositionData {
 
         deltaP = deltaP.divide(1);
 
+
         this.prevVelocity = deltaP;
         this.prevPosition = this.prevPosition.add(deltaP.multiply(Robot.dt));
 
@@ -105,10 +106,6 @@ public class PositionData {
 
         V2d forceNormal = motorForceDir.rotateDegrees(angle);
         double velocityAlongNormal = groundSpeed.dot(forceNormal);
-
-        SmartDashboard.putNumber("FL.x", groundSpeed.x);
-        SmartDashboard.putNumber("Encoder", encoderVelocity);
-        SmartDashboard.putNumber("FL.y", groundSpeed.y);
 
         double mu = (velocityAlongNormal < Constants.STATIC_FRICTION)? Constants.STATIC_FRICTION : Constants.DYNAMIC_FRICTION;
 

@@ -154,7 +154,7 @@
     "Plot <1>": {
       "plots": [
         {
-          "height": 618,
+          "height": 578,
           "series": [
             {
               "color": [
@@ -163,7 +163,7 @@
                 0.6901960968971252,
                 1.0
               ],
-              "id": "NT:/SmartDashboard/FL.x"
+              "id": "NT:/SmartDashboard/V along normal"
             },
             {
               "color": [
@@ -172,7 +172,7 @@
                 0.32156863808631897,
                 1.0
               ],
-              "id": "NT:/SmartDashboard/FL.y"
+              "id": "NT:/SmartDashboard/ground speed"
             }
           ]
         }

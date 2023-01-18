@@ -20,8 +20,8 @@ public final class Constants {
     public static final double WHEEL_RADIUS = 7.0;
     public static final double WHEEL_CIRCUMFERENCE_INCHES = (2.0*WHEEL_RADIUS*Math.PI);
 
-    public static final double STATIC_FRICTION = 1;
-    public static final double DYNAMIC_FRICTION = 1;
+    public static final double STATIC_FRICTION = 0.8;
+    public static final double DYNAMIC_FRICTION = 0.8;
 
     // IN INCHES FROM THE COM
     public static final V2d FL_MOTOR_POS = new V2d(-1, 1);
